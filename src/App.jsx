@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import { WORDS } from "./WORDS";
+import bgImage from "./assets/bg.jpg";
 
 const MAX_ATTEMPTS = 9;
 const correctSound = new Audio("/sounds/corect.wav");
@@ -72,10 +73,12 @@ export default function App() {
   }, [isWinner, isLoser]);
 
   return (
-    <div
-  className="min-h-screen flex flex-col items-center justify-center
-             bg-[url('C:\Users\TEJAS\OneDrive\Desktop\PiggyPath\hangman\public\bg.jpg')] bg-cover bg-center bg-no-repeat"
->
+  <div
+    style={{ backgroundImage: `url(${bgImage})` }}
+    className="min-h-screen flex flex-col items-center justify-center
+               bg-cover bg-center bg-no-repeat relative"
+  >
+
       {/* Hangman Drawing Area */}
       <div className="relative h-[320px]">
         {/* Base */}
