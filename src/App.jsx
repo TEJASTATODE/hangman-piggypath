@@ -80,75 +80,82 @@ export default function App() {
   >
 
     {/* CENTERED HANGMAN */}
-    <div className="w-full flex justify-center">
+<div className="w-full flex justify-center">
 
-      {/* Hangman Drawing Area */}
-      <div className="relative h-[220px] sm:h-[280px] md:h-[320px] mt-[-20px] sm:mt-0">
+  {/* Hangman Drawing Area */}
+  <div className="relative h-[220px] sm:h-[280px] md:h-[320px] mt-[-20px] sm:mt-0">
 
-        {/* Base */}
-        <div className="absolute bottom-3 -left-[150px] w-[300px] h-[8px] bg-black"></div>
+    {/* Base */}
+    <div className="absolute bottom-3 -left-[150px] w-[300px] h-[8px] bg-black"></div>
 
-        {/* Joint */}
-        {mistakes >= 1 && (
-          <div className="absolute top-[29px] -left-[2px] w-[50px] h-[6px] bg-black -rotate-45"></div>
-        )}
+    {/* Joint */}
+    {mistakes >= 1 && (
+      <div className="absolute top-[29px] -left-[2px] w-[50px] h-[6px] bg-black -rotate-45"></div>
+    )}
 
-        {/* Pole */}
-        {mistakes >= 1 && (
-          <div className="absolute left-0 top-[15px] w-[6px] h-[289px] bg-black"></div>
-        )}
+    {/* Pole */}
+    {mistakes >= 1 && (
+      <div className="absolute left-0 top-[15px] w-[6px] h-[289px] bg-black"></div>
+    )}
 
-        {/* Beam */}
-        {mistakes >= 2 && (
-          <div className="absolute left-0 top-[10px] w-[200px] h-[6px] bg-black"></div>
-        )}
+    {/* Beam */}
+    {mistakes >= 2 && (
+      <div className="absolute left-0 top-[10px] w-[200px] h-[6px] bg-black"></div>
+    )}
 
-        {/* Rope */}
-        {mistakes >= 3 && (
-          <div className="absolute left-[150px] top-[10px] w-[4px] h-[30px] bg-black"></div>
-        )}
+    {/* Rope */}
+    {mistakes >= 3 && (
+      <div className="absolute left-[125px] top-[10px] w-[4px] h-[30px] bg-black"></div>
+    )}
 
-        {/* Head */}
-        {mistakes >= 4 && (
-          <div className="absolute top-[40px] left-[131px] w-[40px] h-[40px]
-                          border-6 border-black rounded-full
-                          flex items-center justify-center relative">
+    {/* Head */}
+    {mistakes >= 4 && (
+      <div className="absolute top-[38px] left-[108px]
+                      w-[40px] h-[40px]
+                      border-6 border-black rounded-full
+                      flex items-center justify-center relative">
 
-            <div className="absolute left-[15px] top-[1px] text-xs font-bold">X</div>
-            <div className="absolute right-[15px] top-[1px] text-xs font-bold">X</div>
-            <div className="absolute bottom-[4px] w-[14px] h-[6px]
-                            border-t-2 border-black rounded-t-full"></div>
-
-          </div>
-        )}
-
-        {/* Body */}
-        {mistakes >= 5 && (
-          <div className="absolute top-[77px] left-[149px] w-[6px] h-[65px] bg-black"></div>
-        )}
-
-        {/* Left Arm */}
-        {mistakes >= 6 && (
-          <div className="absolute top-[95px] left-[115px] w-[40px] h-[6px] bg-black -rotate-[30deg]"></div>
-        )}
-
-        {/* Right Arm */}
-        {mistakes >= 7 && (
-          <div className="absolute top-[95px] left-[146px] w-[40px] h-[6px] bg-black rotate-[30deg]"></div>
-        )}
-
-        {/* Left Leg */}
-        {mistakes >= 8 && (
-          <div className="absolute top-[148px] left-[114px] w-[40px] h-[6px] bg-black rotate-[150deg]"></div>
-        )}
-
-        {/* Right Leg */}
-        {mistakes >= 9 && (
-          <div className="absolute top-[150px] left-[145px] w-[40px] h-[6px] bg-black -rotate-[135deg]"></div>
-        )}
-
+        <div className="absolute left-[14px] top-[2px] text-xs font-bold">X</div>
+        <div className="absolute right-[14px] top-[2px] text-xs font-bold">X</div>
+        <div className="absolute bottom-[4px]
+                        w-[14px] h-[6px]
+                        border-t-2 border-black rounded-t-full"></div>
       </div>
-    </div>
+    )}
+
+    {/* Body */}
+    {mistakes >= 5 && (
+      <div className="absolute top-[75px] left-[126px]
+                      w-[6px] h-[65px] bg-black"></div>
+    )}
+
+    {/* Left Arm */}
+    {mistakes >= 6 && (
+      <div className="absolute top-[92px] left-[92px]
+                      w-[40px] h-[6px] bg-black -rotate-[30deg]"></div>
+    )}
+
+    {/* Right Arm */}
+    {mistakes >= 7 && (
+      <div className="absolute top-[92px] left-[123px]
+                      w-[40px] h-[6px] bg-black rotate-[30deg]"></div>
+    )}
+
+    {/* Left Leg */}
+    {mistakes >= 8 && (
+      <div className="absolute top-[145px] left-[90px]
+                      w-[40px] h-[6px] bg-black rotate-[150deg]"></div>
+    )}
+
+    {/* Right Leg */}
+    {mistakes >= 9 && (
+      <div className="absolute top-[145px] left-[121px]
+                      w-[40px] h-[6px] bg-black -rotate-[135deg]"></div>
+    )}
+
+  </div>
+</div>
+
 
     {/* HINTS */}
     <div className="absolute top-4 right-3 sm:top-6 sm:right-10
