@@ -83,7 +83,10 @@ export default function App() {
 <div className="w-full flex justify-center">
 
   {/* Hangman Drawing Area */}
-  <div className="relative h-[220px] sm:h-[280px] md:h-[320px] mt-[-20px] sm:mt-0">
+<div className="relative h-[220px] sm:h-[280px] md:h-[320px]
+                mt-[-20px] sm:mt-0
+                -translate-x-8 sm:translate-x-0">
+
 
     {/* Base */}
     <div className="absolute bottom-3 -left-[150px] w-[300px] h-[8px] bg-black"></div>
