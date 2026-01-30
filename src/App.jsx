@@ -84,13 +84,13 @@ return (
 
       {/* Hangman Drawing Area */}
       <div
-        className="relative h-[220px] sm:h-[280px] md:h-[320px]
+        className="relative h-[220px] sm:h-[200px] md:h-[320px]
         mt-[-20px] sm:mt-0
         translate-x-[-32px] sm:translate-x-0"
       >
 
         {/* Base */}
-        <div className="absolute bottom-3 -left-[150px] w-[300px] h-[8px] bg-black"></div>
+        <div className="absolute bottom-0 -left-[150px] w-[300px] h-[8px] bg-black"></div>
 
         {/* Joint */}
         {mistakes >= 1 && (
@@ -104,12 +104,12 @@ return (
 
         {/* Beam */}
         {mistakes >= 2 && (
-          <div className="absolute left-0 top-[10px] w-[200px] h-[6px] bg-black"></div>
+          <div className="absolute left-0 top-[20px] w-[200px] h-[6px] bg-black"></div>
         )}
 
         {/* Rope */}
         {mistakes >= 3 && (
-          <div className="absolute left-[125px] top-[10px] w-[4px] h-[30px] bg-black"></div>
+          <div className="absolute left-[126px] top-[10px] w-[4px] h-[30px] bg-black"></div>
         )}
 
         {/* Head */}
