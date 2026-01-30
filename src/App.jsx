@@ -71,7 +71,7 @@ export default function App() {
       loseSound.play();
     }
   }, [isWinner, isLoser]);
- return (
+return (
   <div
     style={{ backgroundImage: `url(${bgImage})` }}
     className="min-h-screen flex flex-col items-center justify-center
@@ -80,89 +80,86 @@ export default function App() {
   >
 
     {/* CENTERED HANGMAN */}
-<div className="w-full flex justify-center">
+    <div className="w-full flex justify-center overflow-hidden">
 
-  {/* Hangman Drawing Area */}
-<div className="relative h-[220px] sm:h-[280px] md:h-[320px]
-                mt-[-20px] sm:mt-0
-                -translate-x-8 sm:translate-x-0">
+      {/* Hangman Drawing Area */}
+      <div
+        className="relative h-[220px] sm:h-[280px] md:h-[320px]
+        mt-[-20px] sm:mt-0
+        translate-x-[-32px] sm:translate-x-0"
+      >
 
+        {/* Base */}
+        <div className="absolute bottom-3 -left-[150px] w-[300px] h-[8px] bg-black"></div>
 
-    {/* Base */}
-    <div className="absolute bottom-3 -left-[150px] w-[300px] h-[8px] bg-black"></div>
+        {/* Joint */}
+        {mistakes >= 1 && (
+          <div className="absolute top-[29px] -left-[2px] w-[50px] h-[6px] bg-black -rotate-45"></div>
+        )}
 
-    {/* Joint */}
-    {mistakes >= 1 && (
-      <div className="absolute top-[29px] -left-[2px] w-[50px] h-[6px] bg-black -rotate-45"></div>
-    )}
+        {/* Pole */}
+        {mistakes >= 1 && (
+          <div className="absolute left-0 top-[15px] w-[6px] h-[289px] bg-black"></div>
+        )}
 
-    {/* Pole */}
-    {mistakes >= 1 && (
-      <div className="absolute left-0 top-[15px] w-[6px] h-[289px] bg-black"></div>
-    )}
+        {/* Beam */}
+        {mistakes >= 2 && (
+          <div className="absolute left-0 top-[10px] w-[200px] h-[6px] bg-black"></div>
+        )}
 
-    {/* Beam */}
-    {mistakes >= 2 && (
-      <div className="absolute left-0 top-[10px] w-[200px] h-[6px] bg-black"></div>
-    )}
+        {/* Rope */}
+        {mistakes >= 3 && (
+          <div className="absolute left-[125px] top-[10px] w-[4px] h-[30px] bg-black"></div>
+        )}
 
-    {/* Rope */}
-    {mistakes >= 3 && (
-      <div className="absolute left-[125px] top-[10px] w-[4px] h-[30px] bg-black"></div>
-    )}
+        {/* Head */}
+        {mistakes >= 4 && (
+          <div
+            className="absolute top-[38px] left-[108px]
+            w-[40px] h-[40px]
+            border-6 border-black rounded-full
+            flex items-center justify-center relative"
+          >
+            <div className="absolute left-[14px] top-[2px] text-xs font-bold">X</div>
+            <div className="absolute right-[14px] top-[2px] text-xs font-bold">X</div>
+            <div
+              className="absolute bottom-[4px]
+              w-[14px] h-[6px]
+              border-t-2 border-black rounded-t-full"
+            ></div>
+          </div>
+        )}
 
-    {/* Head */}
-    {mistakes >= 4 && (
-      <div className="absolute top-[38px] left-[108px]
-                      w-[40px] h-[40px]
-                      border-6 border-black rounded-full
-                      flex items-center justify-center relative">
+        {/* Body */}
+        {mistakes >= 5 && (
+          <div className="absolute top-[75px] left-[126px] w-[6px] h-[65px] bg-black"></div>
+        )}
 
-        <div className="absolute left-[14px] top-[2px] text-xs font-bold">X</div>
-        <div className="absolute right-[14px] top-[2px] text-xs font-bold">X</div>
-        <div className="absolute bottom-[4px]
-                        w-[14px] h-[6px]
-                        border-t-2 border-black rounded-t-full"></div>
+        {/* Left Arm */}
+        {mistakes >= 6 && (
+          <div className="absolute top-[92px] left-[92px] w-[40px] h-[6px] bg-black -rotate-[30deg]"></div>
+        )}
+
+        {/* Right Arm */}
+        {mistakes >= 7 && (
+          <div className="absolute top-[92px] left-[123px] w-[40px] h-[6px] bg-black rotate-[30deg]"></div>
+        )}
+
+        {/* Left Leg */}
+        {mistakes >= 8 && (
+          <div className="absolute top-[145px] left-[90px] w-[40px] h-[6px] bg-black rotate-[150deg]"></div>
+        )}
+
+        {/* Right Leg */}
+        {mistakes >= 9 && (
+          <div className="absolute top-[145px] left-[121px] w-[40px] h-[6px] bg-black -rotate-[135deg]"></div>
+        )}
+
       </div>
-    )}
-
-    {/* Body */}
-    {mistakes >= 5 && (
-      <div className="absolute top-[75px] left-[126px]
-                      w-[6px] h-[65px] bg-black"></div>
-    )}
-
-    {/* Left Arm */}
-    {mistakes >= 6 && (
-      <div className="absolute top-[92px] left-[92px]
-                      w-[40px] h-[6px] bg-black -rotate-[30deg]"></div>
-    )}
-
-    {/* Right Arm */}
-    {mistakes >= 7 && (
-      <div className="absolute top-[92px] left-[123px]
-                      w-[40px] h-[6px] bg-black rotate-[30deg]"></div>
-    )}
-
-    {/* Left Leg */}
-    {mistakes >= 8 && (
-      <div className="absolute top-[145px] left-[90px]
-                      w-[40px] h-[6px] bg-black rotate-[150deg]"></div>
-    )}
-
-    {/* Right Leg */}
-    {mistakes >= 9 && (
-      <div className="absolute top-[145px] left-[121px]
-                      w-[40px] h-[6px] bg-black -rotate-[135deg]"></div>
-    )}
-
-  </div>
-</div>
-
+    </div>
 
     {/* HINTS */}
-    <div className="absolute top-4 right-3 sm:top-6 sm:right-10
-                    flex flex-col items-end gap-3">
+    <div className="absolute top-4 right-3 sm:top-6 sm:right-10 flex flex-col items-end gap-3">
 
       <div className="flex gap-2 sm:gap-3">
         {[showH1, showH2, showH3].map((show, i) => (
@@ -184,22 +181,19 @@ export default function App() {
       </div>
 
       {showH1 && (
-        <p className="text-sm bg-white px-3 py-2 rounded-lg shadow-md
-        border border-gray-100 max-w-[160px] sm:max-w-[220px]">
+        <p className="text-sm bg-white px-3 py-2 rounded-lg shadow-md border border-gray-100 max-w-[160px] sm:max-w-[220px]">
           💡 {gameWord.hint1}
         </p>
       )}
 
       {showH2 && (
-        <p className="text-sm bg-white px-3 py-2 rounded-lg shadow-md
-        border border-gray-100 max-w-[160px] sm:max-w-[220px]">
+        <p className="text-sm bg-white px-3 py-2 rounded-lg shadow-md border border-gray-100 max-w-[160px] sm:max-w-[220px]">
           💡 {gameWord.hint2}
         </p>
       )}
 
       {showH3 && (
-        <p className="text-sm bg-white px-3 py-2 rounded-lg shadow-md
-        border border-gray-100 max-w-[160px] sm:max-w-[220px]">
+        <p className="text-sm bg-white px-3 py-2 rounded-lg shadow-md border border-gray-100 max-w-[160px] sm:max-w-[220px]">
           💡 {gameWord.hint3}
         </p>
       )}
@@ -207,19 +201,19 @@ export default function App() {
     </div>
 
     {/* WORD */}
-    <h2 className="tracking-[3px] sm:tracking-[8px]
-                   my-[10px] text-lg sm:text-2xl
-                   font-bold text-center break-words">
+    <h2 className="tracking-[3px] sm:tracking-[8px] my-[10px] text-lg sm:text-2xl font-bold text-center break-words">
       {displayWord}
     </h2>
 
     {/* MESSAGES */}
     {isWinner && <p className="text-white font-bold">🎉 You Won!</p>}
+
     {showDef && (
       <p className="text-center my-2 font-bold text-white">
         <b>{gameWord.word}</b> : {gameWord.definition}
       </p>
     )}
+
     {isLoser && (
       <p className="text-purple font-bold">
         💀 You Lost! Word was {gameWord.word}
