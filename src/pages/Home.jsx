@@ -15,13 +15,13 @@ export default function Home() {
         {/* Dark overlay for better contrast */}
         <div className="absolute inset-0 bg-black/30"></div>
         
-        {/* Title */}
+ 
         <h1 className="relative z-10 text-5xl md:text-6xl font-black tracking-[0.3em] text-white drop-shadow-2xl">
           BREAKEVEN
         </h1>
       </div>
 
-      {/* Wavy Divider */}
+   
       <div className="relative">
         <svg
           className="absolute top-0 w-full"
@@ -48,24 +48,34 @@ export default function Home() {
         </div>
 
         {/* Content Container */}
-        <div className="flex flex-col items-center w-full max-w-lg mt-8">
+        <div className="flex flex-col items-center w-full max-w-lg mt-6">
           
           {/* Description Text - Below emoji */}
-          <p
-  className="text-center text-gray-900
-  text-lg md:text-2xl
-  font-extrabold tracking-wide
-  mb-8 leading-relaxed px-8"
+        <div
+  className="text-gray-900
+  text-lg md:text-xl
+  font-semibold tracking-wide
+  mb-8 leading-relaxed
+  px-4 max-w-[600px]
+  text-left space-y-3"
 >
-  Guess all the letters that make up the words before you hang!
-</p>
+
+  <p>1. Guess all the letters that make up the word before you hang.</p>
+
+  <p>2. Every word is a concept from finance and investing.</p>
+
+  <p>3. You have three hints, and you may use all of them if needed.</p>
+  <p>4. With every incorrect guess, you move one step closer to hanging the man.</p>
+
+</div>
+
 
           
 
           {/* Play Button - Below text */}
           <button
             onClick={() => navigate("/play")}
-            className="px-12 py-3.5 bg-[#00C853] hover:bg-[#00B248] 
+            className="px-15 py-3.5 bg-[#00C853] hover:bg-[#00B248] 
             rounded-full text-white text-xl font-bold tracking-wide
             shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl
             active:scale-95"
