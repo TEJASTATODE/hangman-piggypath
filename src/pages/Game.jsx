@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { WORDS } from "../WORDS";
 import bgImage from "../assets/bg.jpg";
-
+import bgImage1 from "../assets/bg1.jpg";
 const MAX_ATTEMPTS = 9;
 const correctSound = new Audio("/sounds/corect.wav");
 const wrongSound = new Audio("/sounds/wrong.wav");
@@ -73,7 +73,7 @@ export default function App() {
   }, [isWinner, isLoser]);
 return (
   <div
-    style={{ backgroundImage: `url(${bgImage})` }}
+    style={{ backgroundImage: `url(${bgImage1})` }}
     className="min-h-screen flex flex-col items-center justify-center
     bg-cover bg-center bg-no-repeat relative
     px-2 sm:px-6 overflow-x-hidden"
