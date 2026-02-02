@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Credit Card Debt",
+    "definition": "High-interest balances on plastic cards.",
+    "whyBad": "The high interest eats your future earnings."
+  },
+  {
+    "name": "Payday Loans",
+    "definition": "Short-term, ultra-high-interest loans.",
+    "whyBad": "These are debt traps designed to keep you poor."
+  },
+  {
+    "name": "Overdraft Fees",
+    "definition": "Penalties for spending more than you have.",
+    "whyBad": "Pure loss of capital with zero benefit."
+  },
+  {
+    "name": "Car Loan",
+    "definition": "Debt on a vehicle that is losing value.",
+    "whyBad": "You pay interest on a depreciating asset."
+  },
+  {
+    "name": "Student Loans",
+    "definition": "Debt taken for education.",
+    "whyBad": "Limits your ability to invest."
+  },
+  {
+    "name": "Personal Loans",
+    "definition": "Unsecured debt for general spending.",
+    "whyBad": "Reduces monthly disposable income."
+  },
+  {
+    "name": "Mortgage",
+    "definition": "Debt used to purchase real estate.",
+    "whyBad": "Massive long-term monthly drain."
+  },
+  {
+    "name": "Gambling Debt",
+    "definition": "Money owed from betting.",
+    "whyBad": "High risk, zero productive value."
+  },
+  {
+    "name": "Medical Bills",
+    "definition": "Unpaid healthcare costs.",
+    "whyBad": "Financial pressure during recovery."
+  }
+]

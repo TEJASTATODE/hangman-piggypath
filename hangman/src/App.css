@@ -1,5 +1,7 @@
 
-body{ margin:0; }
+body{ margin:0; 
+  
+}
 
 .app{
   min-height:100vh;
@@ -8,11 +10,13 @@ body{ margin:0; }
   align-items:center;
   justify-content:center;
   background:white;
+ 
 }
 
 .hangman-area{
   position:relative;
   height:220px;
+ 
 }
 
 .base{
@@ -197,4 +201,3 @@ body{ margin:0; }
 
 .win{ color:green; font-weight:bold; }
 .lose{ color:red; font-weight:bold; }
-
