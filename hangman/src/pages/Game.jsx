@@ -125,8 +125,8 @@ return (
             border-6 border-black rounded-full
             flex items-center justify-center relative"
           >
-            <div className="absolute left-[14px] top-[2px] text-xs font-bold">X</div>
-            <div className="absolute right-[14px] top-[2px] text-xs font-bold">X</div>
+            <div className="absolute left-[16px] top-[2.2px] text-xs font-bold">X</div>
+            <div className="absolute right-[16px] top-[2.2px] text-xs font-bold">X</div>
             <div
               className="absolute bottom-[4px]
               w-[14px] h-[6px]
