@@ -220,7 +220,11 @@ return (
   >🎉 You Won!</p>}
 
     {showDef && (
-      <p className="text-center my-2 font-bold text-white">
+      <p className="mt-3 px-5 py-2 rounded-lg
+    border-2 border-yellow-500
+    bg-yellow-100
+    text-yellow-900 font-bold
+    shadow-md">
         <b>{gameWord.word}</b> : {gameWord.definition}
       </p>
     )}
