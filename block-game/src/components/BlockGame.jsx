@@ -449,7 +449,8 @@ export default function BlockGame() {
         <div className="mt-4 text-center text-[#d4a574] text-sm">
           <p>Drag blocks or use arrow keys • Get the red block to exit →</p>
         </div>
-      </div> */}
+        */}
+      </div>
 
       {/* WIN MODAL */}
       {won && (
