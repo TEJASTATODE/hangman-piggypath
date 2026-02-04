@@ -1,74 +1,169 @@
 import { useState, useRef, useEffect } from "react";
+import assets from "../data/assets.json";
+import liabilities from "../data/liabilities.json";
 
-const GRID = 6;
-const CELL = 60;
+const GRID = 8; 
+const CELL = 70; 
 const DRAG_THRESHOLD = 20;
 
-// Sample data (replace with your actual imports)
-const assets = [
-  "STOCKS", "BONDS", "GOLD", "PROPERTY", "CRYPTO", "BUSINESS",
-  "SAVINGS", "ETF", "REIT", "DIVIDENDS"
-];
-
-const liabilities = [
-  {
-    name: "CREDIT CARD",
-    definition: "A card that lets you borrow money to make purchases with high interest rates.",
-    whyBad: "High interest debt that compounds quickly if not paid off monthly!"
-  },
-  {
-    name: "CAR LOAN",
-    definition: "Borrowed money to purchase a depreciating vehicle.",
-    whyBad: "You're paying interest on an asset that loses value every year!"
-  },
-  {
-    name: "STUDENT DEBT",
-    definition: "Money borrowed to pay for education that must be repaid with interest.",
-    whyBad: "Can take decades to pay off and limits your financial freedom!"
-  }
-];
+// Track used words to prevent repetition
+let usedAssetsInLevel = new Set();
+let lastLevelAssets = new Set();
+let lastLiability = null;
 
 function randomAsset() {
-  return assets[Math.floor(Math.random() * assets.length)];
+  const availableAssets = assets.filter(
+    asset => !usedAssetsInLevel.has(asset) && !lastLevelAssets.has(asset)
+  );
+  
+  if (availableAssets.length === 0) {
+    lastLevelAssets.clear();
+    return assets[Math.floor(Math.random() * assets.length)];
+  }
+  
+  const selected = availableAssets[Math.floor(Math.random() * availableAssets.length)];
+  usedAssetsInLevel.add(selected);
+  return selected;
+}
+
+function generateLevel() {
+  lastLevelAssets = new Set(usedAssetsInLevel);
+  usedAssetsInLevel.clear();
+  
+  const availableLiabilities = liabilities.filter(l => l.name !== lastLiability);
+  const liability = availableLiabilities[Math.floor(Math.random() * availableLiabilities.length)];
+  lastLiability = liability.name;
+
+  // DYNAMIC RED BLOCK POSITIONS - Different each time!
+  const redBlockPositions = [
+    // Top positions
+    { row: 0, col: 0, label: "top-left" },
+    { row: 0, col: 2, label: "top-center-left" },
+    { row: 0, col: 4, label: "top-center-right" },
+    { row: 1, col: 0, label: "near-top-left" },
+    { row: 1, col: 3, label: "near-top-center" },
+    
+    // Middle positions
+    { row: 3, col: 0, label: "mid-left" },
+    { row: 3, col: 3, label: "center" },
+    { row: 4, col: 1, label: "mid-center-left" },
+    { row: 4, col: 4, label: "mid-center-right" },
+    
+    // Bottom positions
+    { row: 6, col: 0, label: "bottom-left" },
+    { row: 6, col: 2, label: "bottom-center" },
+    { row: 7, col: 1, label: "very-bottom-left" },
+    { row: 7, col: 4, label: "very-bottom-center" },
+    
+    // Edge positions (harder)
+    { row: 2, col: 0, label: "left-edge-upper" },
+    { row: 5, col: 0, label: "left-edge-lower" },
+  ];
+
+  // Randomly select red block position
+  const redBlockPos = redBlockPositions[Math.floor(Math.random() * redBlockPositions.length)];
+  const redRow = redBlockPos.row;
+  const redCol = redBlockPos.col;
+
+  // Generate blocks that don't overlap with red block position
+  const generateNonOverlappingBlocks = () => {
+    const blocks = [];
+    const occupiedCells = new Set();
+    
+    // Mark red block position as occupied
+    occupiedCells.add(`${redRow}-${redCol}`);
+    occupiedCells.add(`${redRow}-${redCol + 1}`);
+    
+    // Function to check if position is free
+    const isFree = (row, col, w, h) => {
+      for (let r = row; r < row + h; r++) {
+        for (let c = col; c < col + w; c++) {
+          if (r >= GRID || c >= GRID || occupiedCells.has(`${r}-${c}`)) {
+            return false;
+          }
+        }
+      }
+      return true;
+    };
+    
+    // Function to occupy cells
+    const occupy = (row, col, w, h) => {
+      for (let r = row; r < row + h; r++) {
+        for (let c = col; c < col + w; c++) {
+          occupiedCells.add(`${r}-${c}`);
+        }
+      }
+    };
+    
+    // Generate 18-22 random blocks
+    const numBlocks = 18 + Math.floor(Math.random() * 5);
+    let attempts = 0;
+    let id = 1;
+    
+    while (blocks.length < numBlocks && attempts < 500) {
+      attempts++;
+      
+      // Random dimensions
+      const w = Math.random() < 0.6 ? (Math.random() < 0.5 ? 2 : 3) : 1;
+      const h = Math.random() < 0.7 ? 1 : 2;
+      
+      // Random position
+      const row = Math.floor(Math.random() * (GRID - h + 1));
+      const col = Math.floor(Math.random() * (GRID - w + 1));
+      
+      if (isFree(row, col, w, h)) {
+        blocks.push({
+          id: id++,
+          word: randomAsset(),
+          row,
+          col,
+          w,
+          h,
+          type: "asset"
+        });
+        occupy(row, col, w, h);
+      }
+    }
+    
+    return blocks;
+  };
+
+  const config = generateNonOverlappingBlocks();
+
+  // Add red liability block at random position
+  config.push({
+    id: 99,
+    word: liability.name,
+    row: redRow,
+    col: redCol,
+    w: 2,
+    h: 1,
+    type: "liability",
+    liabilityData: liability
+  });
+
+  return { blocks: config, liability };
 }
 
 export default function BlockGame() {
-  const liability = liabilities[Math.floor(Math.random() * liabilities.length)];
-
-  const [blocks, setBlocks] = useState([
-  { id: 1, word: randomAsset(), row: 0, col: 0, w: 2, h: 1, type: "asset" },
-  { id: 2, word: randomAsset(), row: 0, col: 3, w: 3, h: 1, type: "asset" },
-
-  { id: 3, word: randomAsset(), row: 1, col: 0, w: 1, h: 2, type: "asset" },
-  { id: 4, word: randomAsset(), row: 1, col: 2, w: 2, h: 1, type: "asset" },
-  { id: 5, word: randomAsset(), row: 2, col: 4, w: 1, h: 2, type: "asset" },
-
-  { id: 6, word: randomAsset(), row: 3, col: 0, w: 3, h: 1, type: "asset" },
-  { id: 7, word: randomAsset(), row: 4, col: 1, w: 2, h: 1, type: "asset" },
-  { id: 8, word: randomAsset(), row: 4, col: 4, w: 2, h: 1, type: "asset" },
-
-  // 🔴 RED LIABILITY BLOCK
-  {
-    id: 99,
-    word: liability.name,
-    row: 2,
-    col: 1,
-    w: 2,
-    h: 1,
-    type: "liability"
-  }
-]);
-
-
+  const [level, setLevel] = useState(1);
+  const [currentLiability, setCurrentLiability] = useState(null);
+  const [blocks, setBlocks] = useState([]);
   const [won, setWon] = useState(false);
   const [selectedBlock, setSelectedBlock] = useState(null);
   const [moves, setMoves] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const dragRef = useRef(null);
 
-  // =====================
-  // COLLISION CHECK
-  // =====================
+  useEffect(() => {
+    const { blocks: newBlocks, liability } = generateLevel();
+    setBlocks(newBlocks);
+    setCurrentLiability(liability);
+    setWon(false);
+    setMoves(0);
+    setSelectedBlock(null);
+  }, [level]);
+
   function canMove(test, list) {
     if (
       test.row < 0 ||
@@ -89,9 +184,6 @@ export default function BlockGame() {
     return true;
   }
 
-  // =====================
-  // DRAG START
-  // =====================
   function startDrag(block, e) {
     e.preventDefault();
     setSelectedBlock(block.id);
@@ -108,9 +200,6 @@ export default function BlockGame() {
     };
   }
 
-  // =====================
-  // DRAG END
-  // =====================
   function endDrag(e) {
     if (!dragRef.current) {
       setIsDragging(false);
@@ -123,7 +212,6 @@ export default function BlockGame() {
     const dx = clientX - dragRef.current.x;
     const dy = clientY - dragRef.current.y;
 
-    // Only move if drag threshold is met
     if (Math.abs(dx) >= DRAG_THRESHOLD || Math.abs(dy) >= DRAG_THRESHOLD) {
       const dir =
         Math.abs(dx) > Math.abs(dy)
@@ -137,9 +225,6 @@ export default function BlockGame() {
     setIsDragging(false);
   }
 
-  // =====================
-  // HANDLE DRAG MOVE (for continuous movement feedback)
-  // =====================
   function handleDragMove(e) {
     if (!dragRef.current || dragRef.current.moved) return;
 
@@ -149,7 +234,6 @@ export default function BlockGame() {
     const dx = clientX - dragRef.current.x;
     const dy = clientY - dragRef.current.y;
 
-    // If moved beyond threshold, execute the move
     if (Math.abs(dx) >= DRAG_THRESHOLD || Math.abs(dy) >= DRAG_THRESHOLD) {
       const dir =
         Math.abs(dx) > Math.abs(dy)
@@ -158,13 +242,11 @@ export default function BlockGame() {
 
       moveBlock(dragRef.current.id, dir);
       
-      // Reset drag start position for continuous movement
       dragRef.current.x = clientX;
       dragRef.current.y = clientY;
     }
   }
 
-  // Add global mouse/touch move and up listeners
   useEffect(() => {
     if (!isDragging) return;
 
@@ -181,9 +263,6 @@ export default function BlockGame() {
     };
   }, [isDragging]);
 
-  // =====================
-  // MOVE BLOCK
-  // =====================
   function moveBlock(id, dir) {
     setBlocks(prev => {
       const arr = [...prev];
@@ -208,9 +287,6 @@ export default function BlockGame() {
     });
   }
 
-  // =====================
-  // KEYBOARD CONTROLS
-  // =====================
   useEffect(() => {
     function handleKeyDown(e) {
       if (!selectedBlock || won) return;
@@ -232,48 +308,35 @@ export default function BlockGame() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [selectedBlock, won]);
 
+  function handleNextLevel() {
+    setLevel(prev => prev + 1);
+    setWon(false);
+  }
+
+  if (!currentLiability) return null;
+
+  const redBlock = blocks.find(b => b.type === 'liability');
+  const exitRow = redBlock ? redBlock.row : 4;
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#2c1810] via-[#3d2415] to-[#1a0f08] flex flex-col items-center justify-center p-4 font-['Fredoka',sans-serif]">
       
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
         
         @keyframes slideIn {
-          from {
-            opacity: 0;
-            transform: translateY(-20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          from { opacity: 0; transform: translateY(-20px); }
+          to { opacity: 1; transform: translateY(0); }
         }
         
         @keyframes pulse {
-          0%, 100% {
-            transform: scale(1);
-          }
-          50% {
-            transform: scale(1.05);
-          }
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.05); }
         }
         
         @keyframes glow {
-          0%, 100% {
-            box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
-          }
-          50% {
-            box-shadow: 0 0 30px rgba(239, 68, 68, 0.8);
-          }
-        }
-        
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-10px);
-          }
+          0%, 100% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.5); }
+          50% { box-shadow: 0 0 30px rgba(239, 68, 68, 0.8); }
         }
         
         .block-enter {
@@ -285,128 +348,129 @@ export default function BlockGame() {
         }
       `}</style>
 
-      {/* Header */}
-      <div className="mb-8 text-center animate-[slideIn_0.5s_ease-out]">
-        <h1 className="text-4xl font-bold text-[#f4a460] mb-2 drop-shadow-lg">
-          🧩 Unblock the Liability
-        </h1>
-        <p className="text-[#d4a574] text-lg">
-          Move the blocks to let the red liability escape!
-        </p>
+      {/* Stats Bar */}
+      <div className="mb-4 flex gap-4 animate-[slideIn_0.6s_ease-out]">
+        <div className="bg-gradient-to-r from-[#654321] to-[#8b5a3c] px-6 py-3 rounded-full border-2 border-[#4a2511] shadow-lg">
+          <span className="text-white font-semibold text-lg">
+            Level: <span className="text-[#ffd700] font-bold">{level}</span>
+          </span>
+        </div>
+        <div className="bg-gradient-to-r from-[#654321] to-[#8b5a3c] px-6 py-3 rounded-full border-2 border-[#4a2511] shadow-lg">
+          <span className="text-white font-semibold text-lg">
+            Moves: <span className="text-[#ffd700] font-bold">{moves}</span>
+          </span>
+        </div>
       </div>
 
-      {/* Moves Counter */}
-      <div className="mb-4 bg-gradient-to-r from-[#654321] to-[#8b5a3c] px-6 py-3 rounded-full border-2 border-[#4a2511] shadow-lg">
-        <span className="text-white font-semibold text-lg">
-          Moves: <span className="text-[#ffd700] font-bold">{moves}</span>
-        </span>
-      </div>
+      {/* BOARD WITH THIN EXIT STRIP */}
+      <div className="relative animate-[slideIn_0.5s_ease-out]">
+        <div className="flex items-center">
+          {/* Main Board */}
+          <div 
+            className="relative bg-gradient-to-br from-[#8b5a3c] to-[#6b4423] border-[6px] border-[#4a2511] rounded-lg shadow-2xl"
+            style={{
+              width: GRID * CELL,
+              height: GRID * CELL,
+              boxShadow: '0 20px 60px rgba(0,0,0,0.6), inset 1px 2px 10px rgba(255,255,255,0.1)'
+            }}
+          >
+            {/* Grid lines */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-10">
+              {[...Array(GRID + 1)].map((_, i) => (
+                <g key={i}>
+                  <line x1={i * CELL} y1="0" x2={i * CELL} y2={GRID * CELL} stroke="#000" strokeWidth="1" />
+                  <line x1="0" y1={i * CELL} x2={GRID * CELL} y2={i * CELL} stroke="#000" strokeWidth="1" />
+                </g>
+              ))}
+            </svg>
 
-      {/* BOARD */}
-      <div className="relative animate-[slideIn_0.6s_ease-out]">
-        <div 
-          className="relative w-[380px] h-[380px] bg-gradient-to-br from-[#8b5a3c] to-[#6b4423] border-[6px] border-[#4a2511] rounded-lg shadow-2xl"
-          style={{
-            boxShadow: '0 20px 60px rgba(0,0,0,0.6), inset 1px 2px 10px rgba(255,255,255,0.1)'
-          }}
-        >
-          {/* Grid lines (subtle) */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-10">
-            {[...Array(GRID + 1)].map((_, i) => (
-              <g key={i}>
-                <line
-                  x1={i * CELL}
-                  y1="0"
-                  x2={i * CELL}
-                  y2={GRID * CELL}
-                  stroke="#000"
-                  strokeWidth="1"
-                />
-                <line
-                  x1="0"
-                  y1={i * CELL}
-                  x2={GRID * CELL}
-                  y2={i * CELL}
-                  stroke="#000"
-                  strokeWidth="1"
-                />
-              </g>
+            {/* Blocks with proper spacing - NO OVERLAP */}
+            {blocks.map(b => (
+              <div
+                key={b.id}
+                onMouseDown={(e) => startDrag(b, e)}
+                onTouchStart={(e) => startDrag(b, e)}
+                onClick={() => !isDragging && setSelectedBlock(b.id)}
+                className={`
+                  absolute flex items-center justify-center
+                  text-black font-medium rounded-lg
+                  select-none cursor-grab active:cursor-grabbing
+                  transition-all duration-200 ease-out
+                  block-enter
+                  ${selectedBlock === b.id ? 'ring-4 ring-yellow-400 z-30 scale-105' : ''}
+                  ${b.type === "liability" 
+                    ? "bg-gradient-to-br from-red-600 to-red-800 liability-block text-white" 
+                    : "bg-gradient-to-br from-[#d4a574] to-[#c19a6b]"
+                  }
+                `}
+                style={{
+                  width: b.w * CELL - 8,
+                  height: b.h * CELL - 8,
+                  left: b.col * CELL + 4,
+                  top: b.row * CELL + 4,
+                  fontSize: '12px',
+                  boxShadow: b.type === "liability" 
+                    ? '0 6px 20px rgba(239, 68, 68, 0.7), inset 0 -2px 5px rgba(0,0,0,0.3)' 
+                    : '0 4px 12px rgba(0,0,0,0.4), inset 0 2px 5px rgba(255,255,255,0.2)',
+                  zIndex: b.type === "liability" ? 25 : (selectedBlock === b.id ? 30 : 10)
+                }}
+              >
+                <span className="px-2 text-center leading-tight drop-shadow-sm break-words">
+                  {b.word}
+                </span>
+              </div>
             ))}
-          </svg>
-
-          {/* EXIT ARROW */}
-          <div className="absolute right-[-35px] top-[100px] flex items-center">
-            <div className="w-8 h-[100px] bg-gradient-to-r from-[#8b5a3c] to-transparent"></div>
-            <div className="text-4xl animate-[float_2s_ease-in-out_infinite]">→</div>
           </div>
 
-          {/* Blocks */}
-          {blocks.map(b => (
-            <div
-              key={b.id}
-              onMouseDown={(e) => startDrag(b, e)}
-              onTouchStart={(e) => startDrag(b, e)}
-              onClick={() => !isDragging && setSelectedBlock(b.id)}
-              className={`
-                absolute flex items-center justify-center
-                text-xs font-bold text-white rounded-lg
-                select-none cursor-grab active:cursor-grabbing
-                transition-all duration-200 ease-out
-                hover:scale-105 hover:z-10
-                block-enter
-                ${selectedBlock === b.id ? 'ring-4 ring-yellow-400 ring-offset-2 ring-offset-transparent z-20' : ''}
-                ${b.type === "liability" 
-                  ? "bg-gradient-to-br from-red-600 to-red-800 liability-block shadow-[0_0_20px_rgba(239,68,68,0.5)]" 
-                  : "bg-gradient-to-br from-[#d4a574] to-[#c19a6b] shadow-lg"
-                }
-              `}
+          {/* THIN EXIT STRIP WITH LARGER FIXED BLACK ARROW */}
+          <div 
+            className="relative bg-gradient-to-r from-[#6b4423] to-[#5a3618] border-y-[6px] border-r-[6px] border-[#4a2511] rounded-r-lg flex items-center justify-center"
+            style={{
+              width: '30px',
+              height: GRID * CELL,
+              marginLeft: '-6px'
+            }}
+          >
+            {/* Larger Fixed Black Arrow at Center - Dynamically positioned */}
+            <div 
+              className="absolute flex items-center justify-center"
               style={{
-                width: b.w * CELL,
-                height: b.h * CELL,
-                left: b.col * CELL,
-                top: b.row * CELL,
-                boxShadow: b.type === "liability" 
-                  ? '0 4px 15px rgba(239, 68, 68, 0.6), inset 0 -2px 5px rgba(0,0,0,0.3)' 
-                  : '0 4px 10px rgba(0,0,0,0.4), inset 0 2px 5px rgba(255,255,255,0.2)'
+                top: `${exitRow * CELL}px`,
+                height: `${CELL}px`,
+                width: '100%'
               }}
             >
-              <span className="px-2 text-center leading-tight drop-shadow-md">
-                {b.word}
-              </span>
+              <div className="text-black text-4xl font-bold">→</div>
             </div>
-          ))}
-        </div>
+          </div>
         </div>
 
-        {/* Instructions
+        {/* Instructions */}
         <div className="mt-4 text-center text-[#d4a574] text-sm">
-          <p>Click a block to select, then use arrow keys or drag to move</p>
+          <p>Drag blocks or use arrow keys • Get the red block to exit →</p>
         </div>
-      </div> */}
+      </div>
 
       {/* WIN MODAL */}
       {won && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 animate-[slideIn_0.3s_ease-out] backdrop-blur-sm">
-          <div className="bg-gradient-to-br from-white to-gray-100 p-8 rounded-2xl w-[90%] max-w-[400px] text-center shadow-2xl border-4 border-yellow-400 animate-[pulse_0.5s_ease-out]">
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 animate-[slideIn_0.3s_ease-out] backdrop-blur-sm p-4">
+          <div className="bg-gradient-to-br from-white to-gray-100 p-8 rounded-2xl w-[90%] max-w-[500px] text-center shadow-2xl border-4 border-yellow-400 animate-[pulse_0.5s_ease-out]">
             
-            {/* Success Icon */}
-            <div className="text-6xl mb-4">
-              You Won🎉
-            </div>
+            <div className="text-6xl mb-4">You Won 🎉</div>
 
-            <h2 className="text-3xl font-bold text-red-600 mb-4">
-              {liability.name}
+            <h2 className="text-2xl md:text-3xl font-bold text-red-600 mb-4">
+              {currentLiability.name}
             </h2>
 
             <div className="bg-blue-50 p-4 rounded-lg mb-4 border-2 border-blue-200">
-              <p className="text-gray-800 text-base leading-relaxed">
-                {liability.definition}
+              <p className="text-gray-800 text-sm md:text-base leading-relaxed">
+                <strong>Definition:</strong> {currentLiability.definition}
               </p>
             </div>
 
             <div className="bg-red-50 p-4 rounded-lg mb-6 border-2 border-red-200">
-              <p className="text-red-600 font-semibold text-base leading-relaxed">
-                ⚠️ {liability.whyBad}
+              <p className="text-red-600 font-semibold text-sm md:text-base leading-relaxed">
+                <strong>⚠️ Why It's Bad:</strong> {currentLiability.whyBad}
               </p>
             </div>
 
@@ -415,10 +479,10 @@ export default function BlockGame() {
             </div>
 
             <button
-              onClick={() => window.location.reload()}
+              onClick={handleNextLevel}
               className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-8 py-3 rounded-full font-bold text-lg shadow-lg transform hover:scale-105 transition-all duration-200 active:scale-95"
             >
-              🎮 Next Level
+              Next Level
             </button>
           </div>
         </div>

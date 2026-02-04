@@ -76,7 +76,7 @@ return (
     style={{ backgroundImage: `url(${bgImage1})` }}
     className="min-h-screen flex flex-col items-center justify-center
     bg-cover bg-center bg-no-repeat relative
-    px-2 sm:px-6 overflow-x-hidden"
+    px-2 sm:px-10 overflow-x-hidden"
   >
 
     {/* CENTERED HANGMAN */}
