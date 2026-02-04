@@ -34,30 +34,26 @@ function generateLevel() {
   const liability = availableLiabilities[Math.floor(Math.random() * availableLiabilities.length)];
   lastLiability = liability.name;
 
-  // DYNAMIC RED BLOCK POSITIONS - Different each time!
+  // STRATEGIC RED BLOCK POSITIONS - Make it harder to escape
   const redBlockPositions = [
-    // Top positions
-    { row: 0, col: 0, label: "top-left" },
-    { row: 0, col: 2, label: "top-center-left" },
-    { row: 0, col: 4, label: "top-center-right" },
-    { row: 1, col: 0, label: "near-top-left" },
-    { row: 1, col: 3, label: "near-top-center" },
+    // Left side positions (easier to block)
+    { row: 1, col: 0, label: "top-left-blocked" },
+    { row: 2, col: 0, label: "upper-left-blocked" },
+    { row: 3, col: 0, label: "mid-left-blocked" },
+    { row: 4, col: 0, label: "center-left-blocked" },
+    { row: 5, col: 0, label: "lower-left-blocked" },
     
-    // Middle positions
-    { row: 3, col: 0, label: "mid-left" },
-    { row: 3, col: 3, label: "center" },
-    { row: 4, col: 1, label: "mid-center-left" },
-    { row: 4, col: 4, label: "mid-center-right" },
+    // Partially interior positions (harder)
+    { row: 2, col: 1, label: "upper-interior" },
+    { row: 3, col: 1, label: "mid-interior" },
+    { row: 4, col: 1, label: "center-interior" },
+    { row: 5, col: 1, label: "lower-interior" },
     
-    // Bottom positions
-    { row: 6, col: 0, label: "bottom-left" },
-    { row: 6, col: 2, label: "bottom-center" },
-    { row: 7, col: 1, label: "very-bottom-left" },
-    { row: 7, col: 4, label: "very-bottom-center" },
-    
-    // Edge positions (harder)
-    { row: 2, col: 0, label: "left-edge-upper" },
-    { row: 5, col: 0, label: "left-edge-lower" },
+    // Deep interior (hardest)
+    { row: 2, col: 2, label: "deep-upper" },
+    { row: 3, col: 2, label: "deep-mid" },
+    { row: 4, col: 2, label: "deep-center" },
+    { row: 5, col: 2, label: "deep-lower" },
   ];
 
   // Randomly select red block position
@@ -65,8 +61,8 @@ function generateLevel() {
   const redRow = redBlockPos.row;
   const redCol = redBlockPos.col;
 
-  // Generate blocks that don't overlap with red block position
-  const generateNonOverlappingBlocks = () => {
+  // Generate 15-20 rectangular blocks (2x1) scattered randomly across the grid
+  const generateStrategicBlocks = () => {
     const blocks = [];
     const occupiedCells = new Set();
     
@@ -95,21 +91,17 @@ function generateLevel() {
       }
     };
     
-    // Generate 18-22 random blocks
-    const numBlocks = 18 + Math.floor(Math.random() * 5);
-    let attempts = 0;
+    // Random number of blocks between 15-20
+    const targetBlocks = 15 + Math.floor(Math.random() * 6);
+    
     let id = 1;
     
-    while (blocks.length < numBlocks && attempts < 500) {
-      attempts++;
-      
-      // Random dimensions
-      const w = Math.random() < 0.6 ? (Math.random() < 0.5 ? 2 : 3) : 1;
-      const h = Math.random() < 0.7 ? 1 : 2;
-      
-      // Random position
-      const row = Math.floor(Math.random() * (GRID - h + 1));
-      const col = Math.floor(Math.random() * (GRID - w + 1));
+    // Helper function to add a block with random orientation
+    const addRandomBlock = (row, col) => {
+      // 60% horizontal (2x1), 40% vertical (1x2) for variety
+      const isHorizontal = Math.random() < 0.6;
+      const w = isHorizontal ? 2 : 1;
+      const h = isHorizontal ? 1 : 2;
       
       if (isFree(row, col, w, h)) {
         blocks.push({
@@ -122,15 +114,128 @@ function generateLevel() {
           type: "asset"
         });
         occupy(row, col, w, h);
+        return true;
+      }
+      return false;
+    };
+    
+    // PRIORITY 1: Block directly in front of red block with VERTICAL block (harder to move!)
+    if (redCol + 2 < GRID && redRow + 1 < GRID && isFree(redRow, redCol + 2, 1, 2)) {
+      blocks.push({
+        id: id++,
+        word: randomAsset(),
+        row: redRow,
+        col: redCol + 2,
+        w: 1,
+        h: 2,
+        type: "asset"
+      });
+      occupy(redRow, redCol + 2, 1, 2);
+    }
+    
+    // PRIORITY 2: Add vertical blocks around red block (creates interesting obstacles)
+    const verticalTraps = [
+      { row: redRow - 1, col: redCol },
+      { row: redRow, col: redCol - 1 },
+      { row: redRow, col: redCol + 3 },
+    ];
+    
+    for (const pos of verticalTraps) {
+      if (blocks.length >= targetBlocks) break;
+      if (pos.row >= 0 && pos.row + 1 < GRID && pos.col >= 0 && pos.col < GRID) {
+        if (isFree(pos.row, pos.col, 1, 2)) {
+          blocks.push({
+            id: id++,
+            word: randomAsset(),
+            row: pos.row,
+            col: pos.col,
+            w: 1,
+            h: 2,
+            type: "asset"
+          });
+          occupy(pos.row, pos.col, 1, 2);
+        }
+      }
+    }
+    
+    // PRIORITY 3: Create mixed obstacles in the path (horizontal + vertical mix)
+    const pathObstacles = [
+      { row: redRow - 2, col: redCol + 2, horizontal: true },
+      { row: redRow + 1, col: redCol + 2, horizontal: true },
+      { row: redRow - 1, col: redCol + 4, horizontal: false },
+      { row: redRow, col: redCol + 5, horizontal: false },
+      { row: redRow, col: redCol + 4, horizontal: true },
+    ];
+    
+    for (const obstacle of pathObstacles) {
+      if (blocks.length >= targetBlocks) break;
+      const w = obstacle.horizontal ? 2 : 1;
+      const h = obstacle.horizontal ? 1 : 2;
+      
+      if (obstacle.row >= 0 && obstacle.row + h <= GRID && 
+          obstacle.col >= 0 && obstacle.col + w <= GRID) {
+        if (isFree(obstacle.row, obstacle.col, w, h)) {
+          blocks.push({
+            id: id++,
+            word: randomAsset(),
+            row: obstacle.row,
+            col: obstacle.col,
+            w,
+            h,
+            type: "asset"
+          });
+          occupy(obstacle.row, obstacle.col, w, h);
+        }
+      }
+    }
+    
+    // PRIORITY 4: Fill grid with MIXED orientation blocks (creates interesting maze)
+    const allPossibleMoves = [];
+    
+    // Generate all possible positions with BOTH orientations
+    for (let row = 0; row < GRID; row++) {
+      for (let col = 0; col < GRID; col++) {
+        // Horizontal blocks (2x1)
+        if (col < GRID - 1) {
+          allPossibleMoves.push({ row, col, w: 2, h: 1 });
+        }
+        // Vertical blocks (1x2)
+        if (row < GRID - 1) {
+          allPossibleMoves.push({ row, col, w: 1, h: 2 });
+        }
+      }
+    }
+    
+    // Shuffle ALL possible moves for maximum randomness
+    for (let i = allPossibleMoves.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [allPossibleMoves[i], allPossibleMoves[j]] = [allPossibleMoves[j], allPossibleMoves[i]];
+    }
+    
+    // Place remaining blocks with mixed orientations
+    for (const move of allPossibleMoves) {
+      if (blocks.length >= targetBlocks) break;
+      
+      if (isFree(move.row, move.col, move.w, move.h)) {
+        blocks.push({
+          id: id++,
+          word: randomAsset(),
+          row: move.row,
+          col: move.col,
+          w: move.w,
+          h: move.h,
+          type: "asset"
+        });
+        occupy(move.row, move.col, move.w, move.h);
       }
     }
     
     return blocks;
   };
 
-  const config = generateNonOverlappingBlocks();
+  const config = generateStrategicBlocks();
 
-  // Add red liability block at random position
+  // Add red liability block at strategic position
   config.push({
     id: 99,
     word: liability.name,
@@ -315,8 +420,8 @@ export default function BlockGame() {
 
   if (!currentLiability) return null;
 
-  const redBlock = blocks.find(b => b.type === 'liability');
-  const exitRow = redBlock ? redBlock.row : 4;
+  // FIXED CENTER EXIT ROW - Always row 4 (center of 8x8 grid)
+  const FIXED_EXIT_ROW = 4;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#2c1810] via-[#3d2415] to-[#1a0f08] flex flex-col items-center justify-center p-4 font-['Fredoka',sans-serif]">
@@ -422,7 +527,7 @@ export default function BlockGame() {
             ))}
           </div>
 
-          {/* THIN EXIT STRIP WITH LARGER FIXED BLACK ARROW */}
+          {/* THIN EXIT STRIP WITH FIXED BLACK ARROW AT CENTER */}
           <div 
             className="relative bg-gradient-to-r from-[#6b4423] to-[#5a3618] border-y-[6px] border-r-[6px] border-[#4a2511] rounded-r-lg flex items-center justify-center"
             style={{
@@ -431,11 +536,11 @@ export default function BlockGame() {
               marginLeft: '-6px'
             }}
           >
-            {/* Larger Fixed Black Arrow at Center - Dynamically positioned */}
+            {/* FIXED Black Arrow at Grid Center (Row 4) */}
             <div 
               className="absolute flex items-center justify-center"
               style={{
-                top: `${exitRow * CELL}px`,
+                top: `${FIXED_EXIT_ROW * CELL}px`,
                 height: `${CELL}px`,
                 width: '100%'
               }}
