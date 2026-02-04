@@ -211,7 +211,13 @@ return (
     </h2>
 
     {/* MESSAGES */}
-    {isWinner && <p className="text-white font-bold">🎉 You Won!</p>}
+    {isWinner && <p
+    className="mt-3 px-5 py-2 rounded-lg
+    border-2 border-yellow-500
+    bg-yellow-100
+    text-yellow-900 font-bold
+    shadow-md"
+  >🎉 You Won!</p>}
 
     {showDef && (
       <p className="text-center my-2 font-bold text-white">
@@ -222,9 +228,9 @@ return (
     {isLoser && (
   <p
     className="mt-3 px-5 py-2 rounded-lg
-    border-2 border-yellow-500
-    bg-yellow-100
-    text-yellow-900 font-bold
+    border-2 border-red-500
+    bg-red-100
+    text-red-900 font-bold
     shadow-md"
   >
     💀 You Lost! Word was <span className="uppercase">{gameWord.word}</span>
