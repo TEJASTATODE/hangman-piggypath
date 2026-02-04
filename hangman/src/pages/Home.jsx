@@ -10,7 +10,7 @@ export default function Home() {
       {/* Top Half - Background Image with Title */}
       <div
         style={{ backgroundImage: `url(${bg})` }}
-        className="h-[50vh] bg-cover bg-center relative flex items-center justify-center"
+        className="h-[39vh] bg-cover bg-center relative flex items-center justify-center"
       >
         {/* Dark overlay for better contrast */}
         <div className="absolute inset-0 bg-black/30"></div>
@@ -38,7 +38,7 @@ export default function Home() {
       </div>
 
       {/* Bottom Half - Cream/Beige Section */}
-      <div className="flex-1 bg-[#F5E6D3] relative flex items-start justify-center px-4 pt-12">
+      <div className="flex-1 bg-[#F5E6D3] relative flex items-start justify-center px-10 pt-20">
         
         {/* Green Smiley Face - Positioned at the top */}
         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -48,7 +48,7 @@ export default function Home() {
         </div>
 
         {/* Content Container */}
-        <div className="flex flex-col items-center w-full max-w-lg mt-6">
+        <div className="flex flex-col items-center w-full max-w-lg mt-1">
           
           {/* Description Text - Below emoji */}
         <div

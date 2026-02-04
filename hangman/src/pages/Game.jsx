@@ -74,11 +74,15 @@ export default function App() {
   }, [isWinner, isLoser]);
 return (
   <div
-    style={{ backgroundImage: `url(${bgImage1})` }}
-    className="min-h-screen flex flex-col items-center justify-center
-    bg-cover bg-center bg-no-repeat relative
-    px-2 sm:px-6 overflow-x-hidden"
-  >
+  style={{ 
+    backgroundImage: `url(${bgImage1})`,
+    minHeight: '100vh',
+    backgroundAttachment: 'fixed'
+  }}
+  className="flex flex-col items-center justify-center
+  bg-cover bg-center bg-no-repeat absolute top-0 left-0 w-full h-full
+  px-4 sm:px-8 overflow-x-hidden"
+>
 
     {/* CENTERED HANGMAN */}
     <div className="w-full flex justify-center overflow-hidden">
@@ -160,7 +164,7 @@ return (
     </div>
 
     {/* HINTS */}
-    <div className="absolute top-4 right-3 sm:top-6 sm:right-10 flex flex-col items-end gap-3">
+    <div className="absolute top-10 right-6 sm:top-14 sm:right-10 flex flex-col items-end gap-3">
 
       <div className="flex gap-2 sm:gap-3">
         {[showH1, showH2, showH3].map((show, i) => (
