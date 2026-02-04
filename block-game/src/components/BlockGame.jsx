@@ -445,11 +445,11 @@ export default function BlockGame() {
           </div>
         </div>
 
-        {/* Instructions */}
+        {/* Instructions
         <div className="mt-4 text-center text-[#d4a574] text-sm">
           <p>Drag blocks or use arrow keys • Get the red block to exit →</p>
         </div>
-      </div>
+      </div> */}
 
       {/* WIN MODAL */}
       {won && (
