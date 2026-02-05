@@ -498,9 +498,9 @@ export default function BlockGame() {
                 onClick={() => !isDragging && setSelectedBlock(b.id)}
                 className={`
                   absolute flex items-center justify-center
-                  text-black font-medium rounded-lg
+                  text-black font-medium font-size-sm rounded-md
                   select-none cursor-grab active:cursor-grabbing
-                  transition-all duration-200 ease-out
+                  transition-all duration-300 ease-out
                   block-enter
                   ${selectedBlock === b.id ? 'ring-4 ring-yellow-400 z-30 scale-105' : ''}
                   ${b.type === "liability" 
@@ -513,14 +513,14 @@ export default function BlockGame() {
                   height: b.h * CELL - 8,
                   left: b.col * CELL + 4,
                   top: b.row * CELL + 4,
-                  fontSize: '12px',
+                  fontSize: '0.65rem',
                   boxShadow: b.type === "liability" 
                     ? '0 6px 20px rgba(239, 68, 68, 0.7), inset 0 -2px 5px rgba(0,0,0,0.3)' 
                     : '0 4px 12px rgba(0,0,0,0.4), inset 0 2px 5px rgba(255,255,255,0.2)',
                   zIndex: b.type === "liability" ? 25 : (selectedBlock === b.id ? 30 : 10)
                 }}
               >
-                <span className="px-2 text-center leading-tight drop-shadow-sm break-words">
+                <span className="px-2 text-center  leading-tight drop-shadow-sm break-words">
                   {b.word}
                 </span>
               </div>
