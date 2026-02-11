@@ -1,5 +1,5 @@
 import {Twitter, Instagram, Linkedin,Mail } from "lucide-react";
-import piggyPathLogo from "@/assets/piggypath-logo.png";
+import piggyPathLogo from "@/assets/Logo.jpeg";
 
 const Footer = () => {
   return (

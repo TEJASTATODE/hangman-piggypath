@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import piggyPathLogo from "@/assets/piggypath-logo.png";
+import piggyPathLogo from "@/assets/Logo.jpeg";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -10,12 +10,12 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+      <div className="container mx-4 px-4 py-4 flex items-center justify-between">
         
         <img
           src={piggyPathLogo}
           alt="PiggyPath"
-          className="h-14 w-auto object-contain cursor-pointer"
+          className="h-20 w-auto object-contain cursor-pointer scale-125 hover:scale-105 transition-transform"
           onClick={() => navigate("/")}
         />
 
