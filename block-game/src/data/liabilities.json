@@ -1,0 +1,127 @@
+[
+  {
+    "name": "Credit Card Debt",
+    "definition": "High-interest balances on plastic cards.",
+    "whyBad": "The high interest eats your future earnings."
+  },
+  {
+    "name": "Payday Loans",
+    "definition": "Short-term, ultra-high-interest loans.",
+    "whyBad": "These are debt traps designed to keep you poor."
+  },
+  {
+    "name": "Overdraft Fees",
+    "definition": "Penalties for spending more than you have.",
+    "whyBad": "Pure loss of capital with zero benefit."
+  },
+  {
+    "name": "Car Loan",
+    "definition": "Debt on a vehicle that is losing value.",
+    "whyBad": "You pay interest on an asset that is depreciating."
+  },
+  {
+    "name": "Student Loans",
+    "definition": "Debt taken for education.",
+    "whyBad": "High monthly payments limit your investment power."
+  },
+  {
+    "name": "Personal Loans",
+    "definition": "Unsecured debt for general spending.",
+    "whyBad": "Reduces your monthly disposable income."
+  },
+  {
+    "name": "Mortgage",
+    "definition": "Debt used to purchase real estate.",
+    "whyBad": "While common, it's still a massive monthly drain."
+  },
+  {
+    "name": "Gambling Debt",
+    "definition": "Money owed from betting.",
+    "whyBad": "High risk, high stress, zero productive value."
+  },
+  {
+    "name": "Medical Bills",
+    "definition": "Unpaid costs for healthcare.",
+    "whyBad": "Creates financial pressure during physical recovery."
+  },
+  {
+    "name": "Store Credit",
+    "definition": "Debt owed to specific retailers.",
+    "whyBad": "Encourages unnecessary consumer spending."
+  },
+  {
+    "name": "Home Equity Loan",
+    "definition": "Using your house as collateral for cash.",
+    "whyBad": "Puts your shelter at risk if you can't pay."
+  },
+  {
+    "name": "Outstanding Invoices",
+    "definition": "Money you owe to vendors/suppliers.",
+    "whyBad": "Damages your business reputation and credit."
+  },
+  {
+    "name": "Margin Debt",
+    "definition": "Borrowing money from a broker to buy stocks.",
+    "whyBad": "Can lead to margin calls and total wipeout."
+  },
+  {
+    "name": "Title Loans",
+    "definition": "High-interest loans using your car as bait.",
+    "whyBad": "Risk of losing your primary transportation."
+  },
+  {
+    "name": "Late Fees",
+    "definition": "Charges for missing payment deadlines.",
+    "whyBad": "Literal money for nothing given to others."
+  },
+  {
+    "name": "Lawsuit Judgments",
+    "definition": "Money owed due to a court losing.",
+    "whyBad": "Unplanned, massive hits to your net worth."
+  },
+  {
+    "name": "Timeshare Fees",
+    "definition": "Annual maintenance for a vacation spot.",
+    "whyBad": "A forever cost for something hard to sell."
+  },
+  {
+    "name": "Subscription Creep",
+    "definition": "Unused monthly digital services.",
+    "whyBad": "Small leaks that drain your wealth over time."
+  },
+  {
+    "name": "Pawn Shop Loans",
+    "definition": "Debt against physical items.",
+    "whyBad": "Extremely high interest and risk of losing items."
+  },
+  {
+    "name": "Business Debt",
+    "definition": "Loans taken to run a company.",
+    "whyBad": "If the business fails, you are still liable."
+  },
+  {
+    "name": "Rent Owed",
+    "definition": "Past-due housing payments.",
+    "whyBad": "Risk of eviction and loss of stability."
+  },
+  {
+    "name": "Utility Arrears",
+    "definition": "Unpaid electricity/water bills.",
+    "whyBad": "Threatens your basic living conditions."
+  },
+  {
+    "name": "Private Loans",
+    "definition": "Unofficial loans from individuals.",
+    "whyBad": "Can ruin personal relationships and trust."
+  },
+  {
+    "name": "Lease Obligations",
+    "definition": "Contractual payments for equipment/cars.",
+    "whyBad": "You pay for use but never own the item."
+  },
+  {
+    "name": "Warranty Renewals",
+    "definition": "Overpriced protection plans.",
+    "whyBad": "Usually costs more than the potential repair."
+  }
+]
