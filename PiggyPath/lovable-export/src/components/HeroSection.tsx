@@ -76,7 +76,7 @@ const HeroSection = () => {
                     <div className="w-16 h-16 bg-mint/20 rounded-2xl flex items-center justify-center mb-3">
                       <span className="text-2xl">🎯</span>
                     </div>
-                    <h3 className="font-bold text-sm mb-1">Hangman</h3>
+                    <h3 className="font-bold text-sm mb-1">BreakEven</h3>
                     <p className="text-xs text-muted-foreground text-center">
                       Guess the word
                     </p>
@@ -165,7 +165,7 @@ const HeroSection = () => {
                     <div className="w-16 h-16 bg-mint/20 rounded-2xl flex items-center justify-center mb-3">
                       <span className="text-2xl">🧱</span>
                     </div>
-                    <h3 className="font-bold text-sm mb-1">Block Puzzle</h3>
+                    <h3 className="font-bold text-sm mb-1">Debt Defier</h3>
                     <p className="text-xs text-muted-foreground text-center">
                       Match & clear
                     </p>
