@@ -1,13 +1,13 @@
 import {Twitter, Instagram, Linkedin,Mail } from "lucide-react";
-import piggyPathLogo from "@/assets/Logo.jpeg";
+import piggyPathLogo from "@/assets/Frame8.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-foreground text-background py-16">
+    <footer className="bg-black text-background py-16">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-3 gap-12">
           <div>
-            <img src={piggyPathLogo} alt="PiggyPath" className="h-8 mb-4 brightness-0 invert" />
+            <img src={piggyPathLogo} alt="PiggyPath" className="h-16 mb-4 scale-150" />
             <p className="text-background/70 text-sm leading-relaxed">
               PiggyPath is a gamified financial literacy
               app for Gen Z, designed to help young
