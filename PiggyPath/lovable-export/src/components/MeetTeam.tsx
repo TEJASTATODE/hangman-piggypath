@@ -15,24 +15,21 @@ const MeetTeam = () => {
       className="bg-background overflow-hidden py-12"
     >
 
-      <style>{`
-        @keyframes waveScroll {
-          from {
-            transform: translateX(0);
-          }
-          to {
-            transform: translateX(-50%);
-          }
-        }
+    <style>{`
+      @keyframes waveScroll {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+      }
 
-        .wave-track {
-          display: flex;
-          gap: 24px;
-          width: max-content;
-          animation: waveScroll 70s linear infinite;
-          will-change: transform;
-        }
-      `}</style>
+      .wave-track {
+        display: flex;
+        gap: 24px;
+        width: max-content;
+        animation: waveScroll 70s linear infinite;
+        will-change: transform;
+      }
+    `}</style>
+
 
       {/* SVG clip paths */}
       <svg width="0" height="0">
