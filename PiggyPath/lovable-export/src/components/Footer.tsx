@@ -24,23 +24,18 @@ const Footer = () => {
             <h4 className="font-semibold mb-4 text-lg">LATEST POSTS :</h4>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-background/70 hover:text-background text-sm flex items-center gap-2">
+                <a href="https://www.instagram.com/p/DTktwaNEqJD/?igsh=bHl1NjltZzlpaGZt" className="text-background/70 hover:text-background text-sm flex items-center gap-2">
                   <span className="w-1.5 h-1.5 bg-primary rounded-full" />
-                  Insights Over Instincts
+                  PiggyPath is where finance meets gaming — and learning finally clicks.
                 </a>
               </li>
               <li>
-                <a href="#" className="text-background/70 hover:text-background text-sm flex items-center gap-2">
+                <a href="https://www.instagram.com/p/DT9vwV4ESQk/?igsh=Ym9kZXFsNWQ4emxm" className="text-background/70 hover:text-background text-sm flex items-center gap-2">
                   <span className="w-1.5 h-1.5 bg-primary rounded-full" />
-                  5 tips from PiggyPath
+                  Happy Republic Day
                 </a>
               </li>
-              <li>
-                <a href="#" className="text-background/70 hover:text-background text-sm flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-primary rounded-full" />
-                  How to Get Trending
-                </a>
-              </li>
+              
             </ul>
           </div>
 
