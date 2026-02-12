@@ -6,7 +6,7 @@ const SolutionSection = () => {
         <div className="max-w-2xl mx-auto">
           
           <h2 className="text-2xl md:text-4xl font-bold text-center text-foreground mb-6">
-            Our Solution
+            Our Vision
           </h2>
           
           <div className="bg-card rounded-3xl p-10 md:p-12 shadow-[0_18px_40px_rgba(0,255,127,0.35)] border border-border">

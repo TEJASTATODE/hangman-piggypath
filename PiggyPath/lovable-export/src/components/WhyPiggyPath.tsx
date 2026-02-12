@@ -54,7 +54,7 @@ const WhyPiggyPath = () => {
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
                 className={`
-                  relative flex-1 cursor-pointer
+                  relative flex-1 cursor-pointer p-6 rounded-2xl
                   transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
                   ${
                     isHovered
@@ -65,26 +65,28 @@ const WhyPiggyPath = () => {
                   }
                   ${isLeft ? "-translate-x-6" : ""}
                   ${isRight ? "translate-x-6" : ""}
-                  ${
-                    feature.variant === "mint"
-                      ? "feature-card-mint"
-                      : "feature-card-lavender"
-                  }
                 `}
+                style={{
+                  backgroundColor: feature.variant === "mint"
+                    ? "rgba(1, 239, 142, 0.25)"
+                    : "rgba(128, 107, 255, 0.25)"
+                }}
               >
                 <div
-                  className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
-                    feature.variant === "mint"
-                      ? "bg-primary/20"
-                      : "bg-secondary/20"
-                  }`}
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                  style={{
+                    backgroundColor: feature.variant === "mint" 
+                      ? "rgba(1, 239, 142, 0.3)" 
+                      : "rgba(128, 107, 255, 0.3)"
+                  }}
                 >
                   <feature.icon
-                    className={`w-6 h-6 ${
-                      feature.variant === "mint"
-                        ? "text-primary"
-                        : "text-secondary"
-                    }`}
+                    className="w-6 h-6"
+                    style={{
+                      color: feature.variant === "mint" 
+                        ? "#01EF8E" 
+                        : "#806BFF"
+                    }}
                   />
                 </div>
 

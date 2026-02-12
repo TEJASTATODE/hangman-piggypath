@@ -36,22 +36,21 @@ const MeetFixy = () => {
                     w-8/9 h-8/9
                     object-contain
                     mx-auto my-auto
-                    animate-question-bounce
-                    drop-shadow-xl
+                    
                   "
                 />
 
                 </div>
               </div>
 
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-primary rounded-full animate-bounce opacity-80" style={{
-              animationDelay: "0s"
+              <div className="absolute -top-4 -right-4 w-8 h-8 bg-primary rounded-full" style={{
+              
             }} />
-              <div className="absolute -bottom-2 -left-6 w-6 h-6 bg-secondary rounded-full animate-bounce opacity-80" style={{
-              animationDelay: "0.3s"
+              <div className="absolute -bottom-2 -left-6 w-6 h-6 bg-secondary rounded-full " style={{
+              
             }} />
-              <div className="absolute top-1/2 -right-8 w-4 h-4 bg-mint rounded-full animate-bounce opacity-60" style={{
-              animationDelay: "0.6s"
+              <div className="absolute top-1/2 -right-8 w-4 h-4 bg-mint rounded-full " style={{
+              
             }} />
             </div>
 
@@ -66,7 +65,7 @@ const MeetFixy = () => {
               Meet Your Financial Guide
             </h2>
             <div className="space-y-4 text-muted-foreground">
-              <p>You’re Not Doing This Alone 👀 <br />
+              <p>You’re Not Doing This Alone.<br />
               Something’s watching your progress. <br />
               Not in a creepy way. In a got-your-back way.</p>
               <p>
