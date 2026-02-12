@@ -71,6 +71,9 @@ const Feedback = () => {
 
       toast.success("Thank you for your feedback!");
       setForm(initialState);
+      try {
+        localStorage.setItem("piggypath_feedback_submitted", "true");
+      } catch (_) {}
       navigate("/");
     } catch (err) {
       console.error("Feedback submit failed", err);

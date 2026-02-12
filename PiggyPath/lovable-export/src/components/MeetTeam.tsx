@@ -1,9 +1,14 @@
+
 const teamMembers = [
-  { name: "John Smith", role: "CEO & Founder", image: "/team/john.jpg" },
-  { name: "David Johnson", role: "CTO", image: "/team/david.jpg" },
-  { name: "Mary Johnson", role: "Head of Design", image: "/team/mary-design.jpg" },
-  { name: "Patricia Davis", role: "Lead Developer", image: "/team/patricia.jpg" },
-  { name: "Mary Johnson", role: "Marketing Director", image: "/team/mary-marketing.jpg" },
+  { name: "Devanand Siddhardha", role: "Founder", image: "/hangman-piggypath/PiggyPath/lovable-export/public/team/sid" },
+  { name: "Sarahana Pande", role: "Co Founder", image: "/team/Sarahana.png" },
+  { name: "Aditya Aggarwal", role: "Course & Content Head", image: "/team/Aditya.png" },
+  { name: "Aramaan Dhaka", role: "Creative Associate", image: "/placeholder.svg" },
+  { name: "Parth Shringi", role: "Creative Associate", image: "/placeholder.svg" },
+  { name: "Vansh Wadha", role: "Content Creation Associate", image: "/team/vansh.jpg" },
+  { name: "Vanshika Ahlawat", role: "Content Creation Associate", image: "/team/Vanshika.jpeg" },
+  { name: "Tanishkka", role: "Tech Associate", image: "/team/Tanishkka.png" },
+  { name: "Tejas Tatode", role: "Tech Associate", image: "/team/tejas.jpeg" },
 ];
 
 const MeetTeam = () => {
