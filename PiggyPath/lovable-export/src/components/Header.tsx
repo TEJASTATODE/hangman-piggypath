@@ -30,6 +30,13 @@ const Header = () => {
           <a href="#about" className="text-muted-foreground hover:text-foreground transition-colors">
             About Us
           </a>
+          <button
+            type="button"
+            className="text-muted-foreground hover:text-foreground transition-colors"
+            onClick={() => navigate("/feedback")}
+          >
+            Feedback
+          </button>
         </nav>
 
         {/* Desktop Login */}
@@ -65,6 +72,16 @@ const Header = () => {
             <a href="#about" className="text-muted-foreground hover:text-foreground transition-colors">
               About Us
             </a>
+            <button
+              type="button"
+              className="text-left text-muted-foreground hover:text-foreground transition-colors"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                navigate("/feedback");
+              }}
+            >
+              Feedback
+            </button>
 
             <div className="flex flex-col gap-2 pt-4 border-t border-border">
               <Button

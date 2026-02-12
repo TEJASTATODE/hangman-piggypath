@@ -7,29 +7,11 @@ import {
   sendPasswordResetEmail
 } from "firebase/auth";
 
-const SHEET_URL = "https://script.google.com/a/macros/nst.rishihood.edu.in/s/AKfycbx_wqsVPKU2QMrdFOeOYzkUoDnTG-hnYaF1YKIzY4p-TrRw69IsbStpl1dKfPDXqFlX/exec";
-
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSignup, setIsSignup] = useState(true);
   const [loading, setLoading] = useState(false);
-
-  // 🔥 Send data to Google Sheets
-  const logToSheets = async (type: string) => {
-    try {
-      await fetch(SHEET_URL, {
-        method: "POST",
-        body: JSON.stringify({
-          email,
-          type,
-          timestamp: new Date().toISOString()
-        })
-      });
-    } catch {
-      console.log("Sheets logging failed (ignored)");
-    }
-  };
 
   const redirectHome = () => {
     window.location.href = "/home"; // change if needed
@@ -53,8 +35,6 @@ const Login = () => {
 
         await sendEmailVerification(userCred.user);
 
-        await logToSheets("signup");
-
         alert("Verification email sent. Verify and login.");
       } else {
         const userCred = await signInWithEmailAndPassword(
@@ -69,8 +49,6 @@ const Login = () => {
           alert("Please verify your email first");
           return;
         }
-
-        await logToSheets("login");
 
         alert("Login successful 🎉");
 
