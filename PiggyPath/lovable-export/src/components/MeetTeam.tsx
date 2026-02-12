@@ -47,10 +47,10 @@ const MeetTeam = () => {
 
           <clipPath id="waveOutIn" clipPathUnits="objectBoundingBox">
             <path d="
-              M0,0
-              C0.25,0.18 0.75,0.18 1,0
-              L1,0.88
-              C0.75,1 0.25,1 0,0.88
+              M0,0.08
+              C0.25,0 0.75,0 1,0.08
+              L1,1
+              C0.75,0.82 0.25,0.82 0,1
               Z
             " />
           </clipPath>
@@ -95,8 +95,11 @@ const MeetTeam = () => {
                       src={member.image}
                       alt={member.name}
                       className="w-full h-full object-cover"
-                      onError={(e) => e.target.src = "/placeholder.svg"}
+                      onError={(e) => {
+                        e.currentTarget.src = "/placeholder.svg";
+                      }}
                     />
+
                   </div>
 
                   <h3 className="mt-3 font-semibold text-foreground">
