@@ -6,7 +6,7 @@ const teamMembers = [
   { name: "Parth Shringi", role: "Creative Associate", image: "/placeholder.svg" },
   { name: "Vansh Wadha", role: "Content Creation Associate", image: "/team/vansh.jpg" },
   { name: "Vanshika Ahlawat", role: "Content Creation Associate", image: "/team/Vanshika.jpeg" },
-  { name: "Tanishkka", role: "Tech Associate", image: "/team/Tanishkka.png" },
+  { name: "Tanishkka", role: "Tech Associate", image: "/team/Tanishkka.jpeg" },
   { name: "Tejas Tatode", role: "Tech Associate", image: "/team/tejas.jpeg" },
 ];
 
