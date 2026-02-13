@@ -106,7 +106,7 @@ const HeroSection = () => {
             {/* Middle phone - Quiz Game */}
             <div className="relative animate-float" style={{ animationDelay: "0.2s" }}>
               <div className="absolute -inset-8 bg-lavender/50 blur-3xl rounded-full -z-10" />
-              <div className="isolate w-80 h-[420px] bg-white rounded-3xl border border-border shadow-2xl overflow-hidden">
+              <div className="isolate w-96 h-[420px] bg-white rounded-3xl border border-border shadow-2xl overflow-hidden">
                 {/* Background Image */}
                 <div 
                   className="absolute inset-0 bg-cover bg-center opacity-20"

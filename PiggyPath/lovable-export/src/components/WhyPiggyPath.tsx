@@ -42,7 +42,7 @@ const WhyPiggyPath = () => {
           Why PiggyPath?
         </h2>
 
-        <div className="flex gap-6 transition-all duration-500">
+        <div className="flex gap-8 transition-all duration-500">
           {features.map((feature, index) => {
             const isHovered = hoveredIndex === index;
             const isLeft = hoveredIndex !== null && index < hoveredIndex;
@@ -68,33 +68,28 @@ const WhyPiggyPath = () => {
                 `}
                 style={{
                   backgroundColor: feature.variant === "mint"
-                    ? "rgba(1, 239, 142, 0.25)"
-                    : "rgba(128, 107, 255, 0.25)"
+                    ? "#00CC75"
+                    : "#6D58E0",
                 }}
               >
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
                   style={{
                     backgroundColor: feature.variant === "mint" 
-                      ? "rgba(1, 239, 142, 0.3)" 
-                      : "rgba(128, 107, 255, 0.3)"
+                      ? "#00CC75" 
+                      : "#6D58E0"
                   }}
                 >
                   <feature.icon
-                    className="w-6 h-6"
-                    style={{
-                      color: feature.variant === "mint" 
-                        ? "#01EF8E" 
-                        : "#806BFF"
-                    }}
+                    className="w-6 h-6 text-white"
                   />
                 </div>
 
-                <h3 className="text-xl font-semibold mb-3">
+                <h3 className="text-xl font-semibold mb-3 text-white">
                   {feature.title}
                 </h3>
 
-                <p className="text-muted-foreground text-sm leading-relaxed">
+                <p className="text-white/90 text-md leading-relaxed">
                   {feature.description}
                 </p>
               </div>
