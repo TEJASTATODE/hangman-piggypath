@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { WORDS } from "../WORDS";
 import bgImage from "../assets/bg.jpg";
@@ -83,6 +82,14 @@ return (
   bg-cover bg-center bg-no-repeat absolute top-0 left-0 w-full h-full
   px-4 sm:px-8 overflow-x-hidden"
 >
+    {/* Home Button - Top Left Corner */}
+    <a
+      href="https://hangman-piggypath-w94d.vercel.app"
+      className="fixed top-4 left-4 bg-white hover:bg-gray-100 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full border-2 border-gray-300 shadow-lg transition-all duration-200 transform hover:scale-105 active:scale-95 z-50 flex items-center gap-2"
+    >
+      <span className="text-xl sm:text-2xl">🏠</span>
+      <span className="text-gray-800 font-semibold text-sm sm:text-base">Home</span>
+    </a>
 
     {/* CENTERED HANGMAN */}
     <div className="w-full flex justify-center overflow-hidden">

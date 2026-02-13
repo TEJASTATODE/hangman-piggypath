@@ -185,6 +185,22 @@ const Quiz = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center px-4 py-8 relative overflow-hidden">
       
+      {/* Home Button - Top Left Corner */}
+      <a
+        href="https://hangman-piggypath-w94d.vercel.app"
+        className="fixed top-4 left-4 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full border-2 shadow-lg transition-all duration-200 transform hover:scale-105 active:scale-95 z-50 flex items-center gap-2"
+        style={{
+          backgroundColor: '#806BFF',
+          borderColor: '#6B56E0',
+          color: 'white'
+        }}
+        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#6B56E0'}
+        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#806BFF'}
+      >
+        <span className="text-xl sm:text-2xl">🏠</span>
+        <span className="font-semibold text-sm sm:text-base">Home</span>
+      </a>
+
       {/* Audio Elements */}
       <audio ref={correctSoundRef} src={rightSound} preload="auto" />
       <audio ref={wrongSoundRef} src={wrongSound} preload="auto" />

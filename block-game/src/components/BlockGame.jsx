@@ -420,12 +420,20 @@ export default function BlockGame() {
 
   if (!currentLiability) return null;
 
-  // FIXED CENTER EXIT ROW - Always row 4 (center of 8x8 grid)
   const FIXED_EXIT_ROW = 4;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#2c1810] via-[#3d2415] to-[#1a0f08] flex flex-col items-center justify-center p-4 font-['Fredoka',sans-serif]">
       
+      {/* Home Button - Top Left Corner */}
+      <a
+        href="https://hangman-piggypath-w94d.vercel.app"
+        className="fixed top-4 left-4 bg-gradient-to-r from-[#654321] to-[#8b5a3c] hover:from-[#7a5228] hover:to-[#9d6847] px-5 py-2.5 rounded-full border-2 border-[#4a2511] shadow-lg transition-all duration-200 transform hover:scale-105 active:scale-95 z-50 flex items-center gap-2"
+      >
+        <span className="text-2xl">🏠</span>
+        <span className="text-white font-semibold text-base">Home</span>
+      </a>
+
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
         
