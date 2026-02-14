@@ -6,7 +6,6 @@ const Login = () => {
   const [isSignup, setIsSignup] = useState(true);
   const [loading, setLoading] = useState(false);
 
-  // ✅ CONFIGURED - Ready to use!
   const CONFIG = {
     SHEET_ID: "18BRkN8A0jiiFUCdXLaYGyw6XinQMi64VTQLVFNDGhgU",
     API_KEY: "AIzaSyBDei6d68KZLBdTJqEKBBCUbZ2xRFOYjfA",
@@ -14,7 +13,7 @@ const Login = () => {
   };
 
   const redirectHome = () => {
-    window.location.href = "/home";
+    window.location.href = "/index";
   };
 
   // Simple password hashing

@@ -18,13 +18,18 @@ const Index = () => {
 
   useEffect(() => {
     const showFeedback = searchParams.get("showFeedback");
+    // Only redirect if explicitly asked AND user hasn't submitted feedback
     if (showFeedback === "1") {
+      // Clear the parameter first
       setSearchParams({}, { replace: true });
+      
+      // Then check and redirect if needed
       try {
         if (localStorage.getItem(FEEDBACK_STORAGE_KEY) !== "true") {
           navigate("/feedback", { replace: true });
         }
       } catch (_) {
+        // If localStorage fails, still redirect
         navigate("/feedback", { replace: true });
       }
     }
@@ -36,10 +41,16 @@ const Index = () => {
       <main>
         <HeroSection />
         <MeetFixy />
-        <WhyPiggyPath />
-        <MeetTeam />
-        <ProblemSection />
-        <SolutionSection />
+        <section id="why">
+          <WhyPiggyPath />
+        </section>
+        <section id="team">
+          <MeetTeam />
+        </section>
+        <section id="about">
+          <ProblemSection />
+          <SolutionSection />
+        </section>
         <CTASection />
       </main>
       <Footer />
