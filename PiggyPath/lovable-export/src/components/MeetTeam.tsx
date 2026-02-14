@@ -14,7 +14,7 @@ const MeetTeam = () => {
   const loopMembers = [...teamMembers, ...teamMembers];
 
   return (
-    <section id="team" className="bg-background overflow-hidden py-12">
+    <section id="team" className="bg-background overflow-hidden py-16">
 
       <style>{`
         @keyframes waveScroll {
@@ -24,9 +24,9 @@ const MeetTeam = () => {
 
         .wave-track {
           display: flex;
-          gap: 32px;
+          gap: 40px;
           width: max-content;
-          animation: waveScroll 70s linear infinite;
+          animation: waveScroll 60s linear infinite;
           will-change: transform;
         }
 
@@ -35,69 +35,79 @@ const MeetTeam = () => {
         }
 
         .team-card:hover .team-card-image {
-          transform: translateY(-8px) scale(1.02);
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+          transform: translateY(-10px) scale(1.03);
+          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.18);
         }
       `}</style>
 
       <div className="container mx-auto px-4">
 
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-3">
+        {/* Heading */}
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
           Meet Our Team
         </h2>
 
-        <p className="text-center text-muted-foreground max-w-xl mx-auto mb-10">
-          A team that works hard behind the scenes to bring you a fun finance
-          experience, building tools that make money management feel effortless.
+        <p className="text-center text-muted-foreground max-w-xl mx-auto mb-12">
+          A passionate team working behind the scenes to create powerful,
+          intuitive, and engaging financial experiences.
         </p>
 
-        <div className="overflow-hidden">
+        {/* Scrolling Section */}
+        <div className="overflow-hidden relative">
           <div className="wave-track">
 
-            {loopMembers.map((member, index) => {
-              return (
-                <div key={index} className="text-center flex-shrink-0 team-card">
-
-                  <div
+            {loopMembers.map((member, index) => (
+              <div
+                key={index}
+                className="text-center flex-shrink-0 team-card"
+              >
+                {/* Image Card */}
+                <div
+                  className="
+                    team-card-image
+                    relative
+                    bg-gradient-to-br from-green-100 via-white to-purple-100
+                    rounded-3xl
+                    overflow-hidden
+                    border-4 border-white
+                    shadow-xl
+                    w-56 h-72
+                    sm:w-56 sm:h-80
+                    md:w-64 md:h-88
+                    lg:w-72 lg:h-96
+                  "
+                >
+                  <img
+                    src={member.image}
+                    alt={member.name}
                     className="
-                      team-card-image
-                      relative
-                      bg-gradient-to-br from-green-100 via-white to-purple-100
-                      rounded-3xl
-                      overflow-hidden
-                      border-4 border-white
-                      shadow-lg
-                      w-56 h-72
-                      sm:w-56 sm:h-80
-                      md:w-64 md:h-88
-                      lg:w-72 lg:h-96
+                      w-full
+                      h-full
+                      object-cover
+                      object-top
+                      scale-110
+                      transition-transform duration-500
                     "
-                  >
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        e.currentTarget.src = "/placeholder.svg";
-                      }}
-                    />
+                    onError={(e) => {
+                      e.currentTarget.src = "/placeholder.svg";
+                    }}
+                  />
 
-                    {/* Subtle overlay gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
-
-                  </div>
-
-                  <h3 className="mt-4 font-semibold text-foreground text-lg">
-                    {member.name}
-                  </h3>
-
-                  <p className="text-sm text-muted-foreground mt-1">
-                    {member.role}
-                  </p>
-
+                  {/* Professional Bottom Fade */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
                 </div>
-              );
-            })}
+
+                {/* Name */}
+                <h3 className="mt-5 font-semibold text-foreground text-lg">
+                  {member.name}
+                </h3>
+
+                {/* Role */}
+                <p className="text-sm text-muted-foreground mt-1 tracking-wide">
+                  {member.role}
+                </p>
+              </div>
+            ))}
 
           </div>
         </div>
