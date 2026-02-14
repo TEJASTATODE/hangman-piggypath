@@ -3,7 +3,7 @@ const teamMembers = [
   { name: "Sarahana Pande", role: "Co Founder", image: "/team/Sarahana.png" },
   { name: "Aditya Aggarwal", role: "Course & Content Head", image: "/team/Aditya.png" },
   { name: "Aramaan Dhaka", role: "Creative Associate", image: "/team/armaan.jpeg" },
-  { name: "Parth Shringi", role: "Creative Associate", image: "/team/Parth.jpeg" },
+  { name: "Parth Shringi", role: "Creative Associate", image: "/team/parth.jpeg" },
   { name: "Vansh Wadha", role: "Content Creation Associate", image: "/team/vansh.jpeg" },
   { name: "Vanshika Ahlawat", role: "Content Creation Associate", image: "/team/Vanshika.jpeg" },
   { name: "Tanishkka", role: "Tech Associate", image: "/team/Tanishkka.jpeg" },
