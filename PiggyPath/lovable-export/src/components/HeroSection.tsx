@@ -27,7 +27,7 @@ const HeroSection = () => {
             Stop Guessing.
           </h1>
           <h1
-            className="text-4xl md:text-6xl font-bold text-gradient mb-6 animate-fade-in-up"
+            className="text-6xl md:text-4.5xl font-bold text-gradient mb-6 leading-tight animate-fade-in-up"
             style={{ animationDelay: "0.1s" }}
           >
             Start Playing

@@ -9,11 +9,11 @@ const Footer = () => {
           <div>
             <img src={piggyPathLogo} alt="PiggyPath" className="h-16 mb-4 scale-150" />
             <p className="text-background/70 text-sm leading-relaxed">
-              PiggyPath is a gamified financial literacy
+              {/* PiggyPath is a gamified financial literacy
               app for Gen Z, designed to help young
               adults learn budgeting, saving, and
               investing through fun and interactive
-              games.
+              games. */}
             </p>
             <p className="text-background/50 text-xs mt-4">
               2025 © PiggyPath™ - v1.1
