@@ -74,7 +74,7 @@ const Header = () => {
           <Button
             variant="ghost"
             className="text-muted-foreground hover:text-foreground"
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/")}
           >
             Log In
           </Button>
@@ -131,7 +131,7 @@ const Header = () => {
                 className="justify-start text-muted-foreground"
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  navigate("/login");
+                  navigate("/");
                 }}
               >
                 Log In
