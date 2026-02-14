@@ -135,9 +135,6 @@ const Quiz = () => {
     }
   };
 
-  /* =====================
-     NEXT QUESTION
-     ===================== */
   const handleNext = () => {
     setSelectedIndex(null);
     setSelectedLeft(null);
