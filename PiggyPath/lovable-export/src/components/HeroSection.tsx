@@ -36,9 +36,7 @@ const HeroSection = () => {
             className="text-lg text-muted-foreground max-w-xl mx-auto mb-8 animate-fade-in-up"
             style={{ animationDelay: "0.2s" }}
           >
-            PiggyPath turns budgeting, saving and investing into a fun game. Level
-            up your financial life and build real wealth — Score a win and start
-            your adventure!
+            Turn your financial goals into your newest high score. With PiggyPath, saving for that dream purchase or investing for the future isn't just smart—it’s actually fun. Level up your wallet, unlock real world rewards and build wealth without the boredom. Ready to play?
           </p>
           <div
             className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up"
