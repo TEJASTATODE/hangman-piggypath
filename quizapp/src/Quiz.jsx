@@ -187,7 +187,7 @@ const Quiz = () => {
       
       {/* Home Button - Top Left Corner */}
       <a
-        href="https://hangman-piggypath-w94d.vercel.app"
+        href="https://hangman-piggypath-w94d.vercel.app/index"
         className="fixed top-4 left-4 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full border-2 shadow-lg transition-all duration-200 transform hover:scale-105 active:scale-95 z-50 flex items-center gap-2"
         style={{
           backgroundColor: '#806BFF',

@@ -427,7 +427,7 @@ export default function BlockGame() {
       
       {/* Home Button - Top Left Corner */}
       <a
-        href="https://hangman-piggypath-w94d.vercel.app"
+        href="https://hangman-piggypath-w94d.vercel.app/index"
         className="fixed top-4 left-4 bg-gradient-to-r from-[#654321] to-[#8b5a3c] hover:from-[#7a5228] hover:to-[#9d6847] px-5 py-2.5 rounded-full border-2 border-[#4a2511] shadow-lg transition-all duration-200 transform hover:scale-105 active:scale-95 z-50 flex items-center gap-2"
       >
         <span className="text-2xl">🏠</span>
