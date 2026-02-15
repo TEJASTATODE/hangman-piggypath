@@ -417,28 +417,39 @@ const Quiz = () => {
         )}
 
         {/* =====================
-            NEXT BUTTON
+            NEXT / PLAY AGAIN BUTTON
            ===================== */}
-        <button
-          onClick={handleNext}
-          disabled={
-            !showAnswer || currentIndex === randomQuestions.length - 1
-          }
-          className={`mt-4 w-full py-5 rounded-2xl font-bold text-lg transition-all duration-300
-            transform hover:scale-[1.01] active:scale-[0.99]
-            ${
-              showAnswer && currentIndex < randomQuestions.length - 1
-                ? "text-white shadow-lg hover:shadow-xl cursor-pointer"
-                : "bg-gray-200 text-gray-400 cursor-not-allowed"
-            }`}
-          style={
-            showAnswer && currentIndex < randomQuestions.length - 1
-              ? { backgroundColor: '#01EF8E' }
-              : {}
-          }
-        >
-          {currentIndex === randomQuestions.length - 1 ? "Finish Quiz" : "Next Question →"}
-        </button>
+        {currentIndex === randomQuestions.length - 1 && showAnswer ? (
+          <button
+            onClick={() => window.location.reload()}
+            className="mt-4 w-full py-5 rounded-2xl font-bold text-lg transition-all duration-300
+              transform hover:scale-[1.01] active:scale-[0.99] text-white shadow-lg hover:shadow-xl cursor-pointer"
+            style={{ backgroundColor: '#806BFF' }}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#6B56E0'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#806BFF'}
+          >
+             Play Again
+          </button>
+        ) : (
+          <button
+            onClick={handleNext}
+            disabled={!showAnswer}
+            className={`mt-4 w-full py-5 rounded-2xl font-bold text-lg transition-all duration-300
+              transform hover:scale-[1.01] active:scale-[0.99]
+              ${
+                showAnswer
+                  ? "text-white shadow-lg hover:shadow-xl cursor-pointer"
+                  : "bg-gray-200 text-gray-400 cursor-not-allowed"
+              }`}
+            style={
+              showAnswer
+                ? { backgroundColor: '#01EF8E' }
+                : {}
+            }
+          >
+            Next Question →
+          </button>
+        )}
 
         {/* End Message */}
         {showAnswer && currentIndex === randomQuestions.length - 1 && (

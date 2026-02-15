@@ -63,7 +63,7 @@ const Footer = () => {
                   className="text-background/70 hover:text-background text-sm flex items-center gap-2"
                 >
                   <span className="w-1.5 h-1.5 bg-primary rounded-full" />
-                  PiggyPath is where finance meets gaming — and learning finally clicks.
+                  PiggyPath is where finance meets gaming and learning finally clicks.
                 </a>
               </li>
               <li>
