@@ -42,7 +42,7 @@ const WhyPiggyPath = () => {
           Why PiggyPath?
         </h2>
 
-        <div className="flex gap-6 transition-all duration-500">
+        <div className="flex gap-8 transition-all duration-500">
           {features.map((feature, index) => {
             const isHovered = hoveredIndex === index;
             const isLeft = hoveredIndex !== null && index < hoveredIndex;
@@ -54,7 +54,7 @@ const WhyPiggyPath = () => {
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
                 className={`
-                  relative flex-1 cursor-pointer
+                  relative flex-1 cursor-pointer p-6 rounded-2xl
                   transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
                   ${
                     isHovered
@@ -65,34 +65,31 @@ const WhyPiggyPath = () => {
                   }
                   ${isLeft ? "-translate-x-6" : ""}
                   ${isRight ? "translate-x-6" : ""}
-                  ${
-                    feature.variant === "mint"
-                      ? "feature-card-mint"
-                      : "feature-card-lavender"
-                  }
                 `}
+                style={{
+                  backgroundColor: feature.variant === "mint"
+                    ? "#00CC75"
+                    : "#6D58E0",
+                }}
               >
                 <div
-                  className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
-                    feature.variant === "mint"
-                      ? "bg-primary/20"
-                      : "bg-secondary/20"
-                  }`}
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                  style={{
+                    backgroundColor: feature.variant === "mint" 
+                      ? "#00CC75" 
+                      : "#6D58E0"
+                  }}
                 >
                   <feature.icon
-                    className={`w-6 h-6 ${
-                      feature.variant === "mint"
-                        ? "text-primary"
-                        : "text-secondary"
-                    }`}
+                    className="w-6 h-6 text-white"
                   />
                 </div>
 
-                <h3 className="text-xl font-semibold mb-3">
+                <h3 className="text-xl font-semibold mb-3 text-white">
                   {feature.title}
                 </h3>
 
-                <p className="text-muted-foreground text-sm leading-relaxed">
+                <p className="text-white/90 text-md leading-relaxed">
                   {feature.description}
                 </p>
               </div>

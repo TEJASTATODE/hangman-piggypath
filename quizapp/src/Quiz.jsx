@@ -135,9 +135,6 @@ const Quiz = () => {
     }
   };
 
-  /* =====================
-     NEXT QUESTION
-     ===================== */
   const handleNext = () => {
     setSelectedIndex(null);
     setSelectedLeft(null);
@@ -185,6 +182,22 @@ const Quiz = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center px-4 py-8 relative overflow-hidden">
       
+      {/* Home Button - Top Left Corner */}
+      <a
+        href="https://hangman-piggypath-w94d.vercel.app/index"
+        className="fixed top-4 left-4 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full border-2 shadow-lg transition-all duration-200 transform hover:scale-105 active:scale-95 z-50 flex items-center gap-2"
+        style={{
+          backgroundColor: '#806BFF',
+          borderColor: '#6B56E0',
+          color: 'white'
+        }}
+        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#6B56E0'}
+        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#806BFF'}
+      >
+        <span className="text-xl sm:text-2xl">🏠</span>
+        <span className="font-semibold text-sm sm:text-base">Home</span>
+      </a>
+
       {/* Audio Elements */}
       <audio ref={correctSoundRef} src={rightSound} preload="auto" />
       <audio ref={wrongSoundRef} src={wrongSound} preload="auto" />
@@ -404,28 +417,39 @@ const Quiz = () => {
         )}
 
         {/* =====================
-            NEXT BUTTON
+            NEXT / PLAY AGAIN BUTTON
            ===================== */}
-        <button
-          onClick={handleNext}
-          disabled={
-            !showAnswer || currentIndex === randomQuestions.length - 1
-          }
-          className={`mt-4 w-full py-5 rounded-2xl font-bold text-lg transition-all duration-300
-            transform hover:scale-[1.01] active:scale-[0.99]
-            ${
-              showAnswer && currentIndex < randomQuestions.length - 1
-                ? "text-white shadow-lg hover:shadow-xl cursor-pointer"
-                : "bg-gray-200 text-gray-400 cursor-not-allowed"
-            }`}
-          style={
-            showAnswer && currentIndex < randomQuestions.length - 1
-              ? { backgroundColor: '#01EF8E' }
-              : {}
-          }
-        >
-          {currentIndex === randomQuestions.length - 1 ? "Finish Quiz" : "Next Question →"}
-        </button>
+        {currentIndex === randomQuestions.length - 1 && showAnswer ? (
+          <button
+            onClick={() => window.location.reload()}
+            className="mt-4 w-full py-5 rounded-2xl font-bold text-lg transition-all duration-300
+              transform hover:scale-[1.01] active:scale-[0.99] text-white shadow-lg hover:shadow-xl cursor-pointer"
+            style={{ backgroundColor: '#806BFF' }}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#6B56E0'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#806BFF'}
+          >
+             Play Again
+          </button>
+        ) : (
+          <button
+            onClick={handleNext}
+            disabled={!showAnswer}
+            className={`mt-4 w-full py-5 rounded-2xl font-bold text-lg transition-all duration-300
+              transform hover:scale-[1.01] active:scale-[0.99]
+              ${
+                showAnswer
+                  ? "text-white shadow-lg hover:shadow-xl cursor-pointer"
+                  : "bg-gray-200 text-gray-400 cursor-not-allowed"
+              }`}
+            style={
+              showAnswer
+                ? { backgroundColor: '#01EF8E' }
+                : {}
+            }
+          >
+            Next Question →
+          </button>
+        )}
 
         {/* End Message */}
         {showAnswer && currentIndex === randomQuestions.length - 1 && (

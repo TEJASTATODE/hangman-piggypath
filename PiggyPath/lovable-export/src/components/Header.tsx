@@ -33,6 +33,24 @@ const Header = () => {
   const navLinkClass =
     "text-muted-foreground hover:text-foreground transition-colors text-left";
 
+  const handleNavClick = (sectionId: string) => {
+    // If we're not on index page, navigate there first
+    if (location.pathname !== "/index") {
+      navigate("/index");
+      // Wait for navigation, then scroll
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        element?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    } else {
+      // Already on index page, just scroll
+      const element = document.getElementById(sectionId);
+      element?.scrollIntoView({ behavior: "smooth" });
+    }
+    setMobileMenuOpen(false);
+  };
+
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container mx-4 px-4 py-4 flex items-center justify-between">
@@ -42,11 +60,12 @@ const Header = () => {
           src={piggyPathLogo}
           alt="PiggyPath"
           className="h-20 w-auto object-contain cursor-pointer scale-125 hover:scale-105 transition-transform"
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/index")}
         />
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
+
           <button onClick={() => goToSection("why")} className={navLinkClass}>
             Why PiggyPath
           </button>
@@ -60,6 +79,28 @@ const Header = () => {
           </button>
 
           <button
+            type="button"
+            onClick={() => handleNavClick("why")}
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Why PiggyPath
+          </button>
+          <button
+            type="button"
+            onClick={() => handleNavClick("team")}
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Team
+          </button>
+          <button
+            type="button"
+            onClick={() => handleNavClick("about")}
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            About Us
+          </button>
+          
+          <button
             onClick={() => navigate("/feedback")}
             className={navLinkClass}
           >
@@ -72,7 +113,7 @@ const Header = () => {
           <Button
             variant="ghost"
             className="text-muted-foreground hover:text-foreground"
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/")}
           >
             Log In
           </Button>
@@ -92,6 +133,7 @@ const Header = () => {
         <div className="md:hidden bg-background border-b border-border py-4">
           <nav className="container mx-auto px-4 flex flex-col gap-4">
 
+
             <button onClick={() => goToSection("why")} className={navLinkClass}>
               Why PiggyPath
             </button>
@@ -101,6 +143,29 @@ const Header = () => {
             </button>
 
             <button onClick={() => goToSection("about")} className={navLinkClass}>
+              About Us
+            </button>
+
+
+            <button
+              type="button"
+              onClick={() => handleNavClick("why")}
+              className="text-left text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Why PiggyPath
+            </button>
+            <button
+              type="button"
+              onClick={() => handleNavClick("team")}
+              className="text-left text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Team
+            </button>
+            <button
+              type="button"
+              onClick={() => handleNavClick("about")}
+              className="text-left text-muted-foreground hover:text-foreground transition-colors"
+            >
               About Us
             </button>
 
@@ -120,7 +185,7 @@ const Header = () => {
                 className="justify-start text-muted-foreground"
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  navigate("/login");
+                  navigate("/");
                 }}
               >
                 Log In

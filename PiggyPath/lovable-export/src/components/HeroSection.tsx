@@ -27,7 +27,7 @@ const HeroSection = () => {
             Stop Guessing.
           </h1>
           <h1
-            className="text-4xl md:text-6xl font-bold text-gradient mb-6 animate-fade-in-up"
+            className="text-6xl md:text-4.5xl font-bold text-gradient mb-6 leading-tight animate-fade-in-up"
             style={{ animationDelay: "0.1s" }}
           >
             Start Playing
@@ -36,9 +36,7 @@ const HeroSection = () => {
             className="text-lg text-muted-foreground max-w-xl mx-auto mb-8 animate-fade-in-up"
             style={{ animationDelay: "0.2s" }}
           >
-            PiggyPath turns budgeting, saving and investing into a fun game. Level
-            up your financial life and build real wealth — Score a win and start
-            your adventure!
+            Turn your financial goals into your newest high score. With PiggyPath, saving for that dream purchase or investing for the future isn't just smart—it’s actually fun. Level up your wallet, unlock real world rewards and build wealth without the boredom. Ready to play?
           </p>
           <div
             className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up"
@@ -58,12 +56,12 @@ const HeroSection = () => {
 
         {/* Phone mockups */}
         <div className="relative max-w-4xl mx-auto overflow-visible">
-          <div className="flex justify-center items-end gap-6">
+          <div className="flex justify-center items-end gap-16">
 
             {/* Left phone - Hangman Game */}
             <div className="relative z-25 animate-float" style={{ animationDelay: "0s" }}>
               <div className="absolute -inset-6 bg-mint/30 blur-3xl rounded-full -z-10" />
-              <div className="isolate w-48 h-96 bg-white rounded-3xl border border-border shadow-xl overflow-hidden">
+              <div className="isolate w-80 h-96 bg-white rounded-3xl border border-border shadow-xl overflow-hidden">
                 {/* Background Image */}
                 <div 
                   className="absolute inset-0 bg-cover bg-center opacity-20"
@@ -73,20 +71,20 @@ const HeroSection = () => {
                 {/* Content */}
                 <div className="relative h-full flex flex-col items-center justify-between p-4">
                   <div className="flex-1 flex flex-col items-center justify-center">
-                    <div className="w-16 h-16 bg-mint/20 rounded-2xl flex items-center justify-center mb-3">
-                      <span className="text-2xl">🎯</span>
+                    <div className="w-24 h-24 bg-mint/20 rounded-2xl flex items-center justify-center mb-3">
+                      <span className="text-6xl">🎯</span>
                     </div>
-                    <h3 className="font-bold text-sm mb-1">BreakEven</h3>
-                    <p className="text-xs text-muted-foreground text-center">
+                    <h3 className="font-bold text-2xl mb-1">BreakEven</h3>
+                    <p className="text-md text-muted-foreground text-center">
                       Guess the word
                     </p>
                     {/* Simple Hangman Visual */}
                     <div className="mt-4 space-y-2">
                       <div className="flex gap-1">
-                        <div className="w-6 h-6 border-2 border-mint rounded flex items-center justify-center text-xs">S</div>
-                        <div className="w-6 h-6 border-2 border-mint rounded flex items-center justify-center text-xs">A</div>
-                        <div className="w-6 h-6 border-2 border-muted rounded"></div>
-                        <div className="w-6 h-6 border-2 border-muted rounded"></div>
+                        <div className="w-8 h-8 border-2 border-mint rounded flex items-center justify-center text-xs">S</div>
+                        <div className="w-8 h-8 border-2 border-mint rounded flex items-center justify-center text-xs">A</div>
+                        <div className="w-8 h-8 border-2 border-muted rounded"></div>
+                        <div className="w-8 h-8 border-2 border-muted rounded"></div>
                       </div>
                     </div>
                   </div>
@@ -94,10 +92,10 @@ const HeroSection = () => {
                   {/* Play Button */}
                   <Button 
                     size="sm" 
-                    className="bg-mint hover:bg-mint/90 text-white rounded-full w-full gap-2"
+                    className="bg-mint hover:bg-mint/90 text-white rounded-full w-full gap-2 text-xl"
                     onClick={() => handleGameClick(gameLinks.hangman)}
                   >
-                    <Play className="w-4 h-4" /> Play
+                    <Play className="w-4 h-4 " /> Play
                   </Button>
                 </div>
               </div>
@@ -106,7 +104,7 @@ const HeroSection = () => {
             {/* Middle phone - Quiz Game */}
             <div className="relative animate-float" style={{ animationDelay: "0.2s" }}>
               <div className="absolute -inset-8 bg-lavender/50 blur-3xl rounded-full -z-10" />
-              <div className="isolate w-56 h-[420px] bg-white rounded-3xl border border-border shadow-2xl overflow-hidden">
+              <div className="isolate w-96 h-[420px] bg-white rounded-3xl border border-border shadow-2xl overflow-hidden">
                 {/* Background Image */}
                 <div 
                   className="absolute inset-0 bg-cover bg-center opacity-20"
@@ -116,22 +114,22 @@ const HeroSection = () => {
                 {/* Content */}
                 <div className="relative h-full flex flex-col items-center justify-between p-5">
                   <div className="flex-1 flex flex-col items-center justify-center">
-                    <div className="w-20 h-20 bg-secondary/20 rounded-2xl flex items-center justify-center mb-4">
-                      <span className="text-3xl">❓</span>
+                    <div className="w-24 h-24 bg-secondary/20 rounded-2xl flex items-center justify-center mb-4">
+                      <span className="text-6xl">❓</span>
                     </div>
-                    <h3 className="font-bold text-base mb-2">Quiz Challenge</h3>
-                    <p className="text-xs text-muted-foreground text-center mb-4">
+                    <h3 className="font-bold text-base mb-2 text-xl">Quiz Challenge</h3>
+                    <p className="text-md text-muted-foreground text-center mb-4">
                       Test your knowledge
                     </p>
                     {/* Quiz Options */}
                     <div className="w-full space-y-2">
-                      <div className="bg-lavender/10 border border-lavender/30 rounded-lg p-2 text-xs">
+                      <div className="bg-lavender/10 border border-lavender/30 rounded-lg p-2 text-md">
                         Option A
                       </div>
-                      <div className="bg-lavender/10 border border-lavender/30 rounded-lg p-2 text-xs">
+                      <div className="bg-lavender/10 border border-lavender/30 rounded-lg p-2 text-md">
                         Option B
                       </div>
-                      <div className="bg-lavender/10 border border-lavender/30 rounded-lg p-2 text-xs">
+                      <div className="bg-lavender/10 border border-lavender/30 rounded-lg p-2 text-md">
                         Option C
                       </div>
                     </div>
@@ -140,7 +138,7 @@ const HeroSection = () => {
                   {/* Play Button */}
                   <Button 
                     size="sm" 
-                    className="bg-secondary hover:bg-secondary/90 text-white rounded-full w-full gap-2"
+                    className="bg-secondary hover:bg-secondary/90 text-white rounded-full w-full gap-2 text-xl"
                     onClick={() => handleGameClick(gameLinks.quiz)}
                   >
                     <Play className="w-4 h-4" /> Play
@@ -152,7 +150,7 @@ const HeroSection = () => {
             {/* Right phone - Block Game */}
             <div className="relative z-25 animate-float" style={{ animationDelay: "0.4s" }}>
               <div className="absolute -inset-6 bg-mint/30 blur-3xl rounded-full -z-10" />
-              <div className="isolate w-48 h-96 bg-white rounded-3xl border border-border shadow-xl overflow-hidden">
+              <div className="isolate w-80 h-96 bg-white rounded-3xl border border-border shadow-xl overflow-hidden">
                 {/* Background Image */}
                 <div 
                   className="absolute inset-0 bg-cover bg-center opacity-20"
@@ -162,30 +160,30 @@ const HeroSection = () => {
                 {/* Content */}
                 <div className="relative h-full flex flex-col items-center justify-between p-4">
                   <div className="flex-1 flex flex-col items-center justify-center">
-                    <div className="w-16 h-16 bg-mint/20 rounded-2xl flex items-center justify-center mb-3">
-                      <span className="text-2xl">🧱</span>
+                    <div className="w-24 h-24 bg-mint/20 rounded-2xl flex items-center justify-center mb-3">
+                      <span className="text-6xl">🧱</span>
                     </div>
-                    <h3 className="font-bold text-sm mb-1">Debt Defier</h3>
-                    <p className="text-xs text-muted-foreground text-center">
+                    <h3 className="font-bold text-2xl mb-1">Debt Defier</h3>
+                    <p className="text-md text-muted-foreground text-center">
                       Match & clear
                     </p>
                     {/* Block Grid Visual */}
                     <div className="mt-4 grid grid-cols-4 gap-1">
-                      <div className="w-5 h-5 bg-mint/40 rounded"></div>
-                      <div className="w-5 h-5 bg-mint/40 rounded"></div>
-                      <div className="w-5 h-5 bg-transparent rounded border border-muted"></div>
-                      <div className="w-5 h-5 bg-transparent rounded border border-muted"></div>
-                      <div className="w-5 h-5 bg-mint/60 rounded"></div>
-                      <div className="w-5 h-5 bg-transparent rounded border border-muted"></div>
-                      <div className="w-5 h-5 bg-mint/60 rounded"></div>
-                      <div className="w-5 h-5 bg-transparent rounded border border-muted"></div>
+                      <div className="w-6 h-6 bg-mint/40 rounded"></div>
+                      <div className="w-6 h-6 bg-mint/40 rounded"></div>
+                      <div className="w-6 h-6 bg-transparent rounded border border-muted"></div>
+                      <div className="w-6 h-6 bg-transparent rounded border border-muted"></div>
+                      <div className="w-6 h-6 bg-mint/60 rounded"></div>
+                      <div className="w-6 h-6 bg-transparent rounded border border-muted"></div>
+                      <div className="w-6 h-6 bg-mint/60 rounded"></div>
+                      <div className="w-6 h-6 bg-transparent rounded border border-muted"></div>
                     </div>
                   </div>
                   
                   {/* Play Button */}
                   <Button 
                     size="sm" 
-                    className="bg-mint hover:bg-mint/90 text-white rounded-full w-full gap-2"
+                    className="bg-mint hover:bg-mint/90 text-white rounded-full w-full gap-2 text-xl"
                     onClick={() => handleGameClick(gameLinks.blocks)}
                   >
                     <Play className="w-4 h-4" /> Play

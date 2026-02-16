@@ -36,22 +36,21 @@ const MeetFixy = () => {
                     w-8/9 h-8/9
                     object-contain
                     mx-auto my-auto
-                    animate-question-bounce
-                    drop-shadow-xl
+                    
                   "
                 />
 
                 </div>
               </div>
 
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-primary rounded-full animate-bounce opacity-80" style={{
-              animationDelay: "0s"
+              <div className="absolute -top-4 -right-4 w-8 h-8 bg-primary rounded-full" style={{
+              
             }} />
-              <div className="absolute -bottom-2 -left-6 w-6 h-6 bg-secondary rounded-full animate-bounce opacity-80" style={{
-              animationDelay: "0.3s"
+              <div className="absolute -bottom-2 -left-6 w-6 h-6 bg-secondary rounded-full " style={{
+              
             }} />
-              <div className="absolute top-1/2 -right-8 w-4 h-4 bg-mint rounded-full animate-bounce opacity-60" style={{
-              animationDelay: "0.6s"
+              <div className="absolute top-1/2 -right-8 w-4 h-4 bg-mint rounded-full " style={{
+              
             }} />
             </div>
 
@@ -66,6 +65,7 @@ const MeetFixy = () => {
               Meet Your Financial Guide
             </h2>
             <div className="space-y-4 text-muted-foreground">
+<<<<<<< HEAD
               <p>You’re Not Doing This Alone. <br />
               Something’s watching your progress. <br />
               Not in a creepy way. In a got-your-back way.</p>
@@ -75,6 +75,16 @@ const MeetFixy = () => {
               <p>No face reveal. <br /> No name drop. <br /> Not yet.</p>
               <p>Just know this:
                 it’s built to learn how you think, move at your pace and keep you on the right financial path.</p>
+=======
+              <p>Even the best players need a sidekick. As you explore PiggyPath, you might sense you aren't playing alone. That’s because we’re building the ultimate guide to watch your back.<br />
+             Think of it as a financial guru with zero judgment and infinite patience. It’s here to nudge you toward the wins and keep it real when the spending gets wild. <br />
+             </p>
+              <p>
+                Who is it? We’re keeping the identity under wraps for now. But get ready—your adventure is about to get a lot more personal.
+              </p>
+              <p>Just know this
+                it’s built to learn how you think, move at your pace, and keep you on the right financial path.</p>
+>>>>>>> 01df8e02cb88685f37b5934a2a88874c4e0e7cbc
               <p>Coming soon.</p>
             </div>
           </div>
