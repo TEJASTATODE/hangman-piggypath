@@ -3,7 +3,7 @@ const ProblemSection = () => {
     <section id="about">
       <section className="py-14 bg-background">
         <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto">
+          <div className="max-w-5xl mx-auto">
 
             <h2 className="text-2xl md:text-4xl font-bold text-center text-foreground mb-6">
               Our Mission
