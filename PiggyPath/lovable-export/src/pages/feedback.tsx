@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { toast } from "@/components/ui/sonner";
 
-// Set in .env as VITE_FEEDBACK_SCRIPT_URL (Apps Script Web App URL). See scripts/feedback-to-google-sheets.js.
+// Set in .env as VITE_FEEDBACK_SCRIPT_URL (Apps Script Web App URL).
 const FEEDBACK_SCRIPT_URL = import.meta.env.VITE_FEEDBACK_SCRIPT_URL ?? "";
 
 type FeedbackState = {
@@ -16,6 +16,7 @@ type FeedbackState = {
   helpedUnderstand: string;
   engagement: string;
   improveFirst: string;
+  comments: string; // NEW optional field
 };
 
 const initialState: FeedbackState = {
@@ -26,7 +27,8 @@ const initialState: FeedbackState = {
   hardestGame: "",
   helpedUnderstand: "",
   engagement: "",
-  improveFirst: ""
+  improveFirst: "",
+  comments: ""
 };
 
 const Feedback = () => {
@@ -41,18 +43,32 @@ const Feedback = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const missing = (Object.keys(form) as (keyof FeedbackState)[]).filter((k) => !form[k]);
+    // Only required fields validated
+    const requiredFields: (keyof FeedbackState)[] = [
+      "ageGroup",
+      "firstReaction",
+      "easeOfUse",
+      "favoriteGame",
+      "hardestGame",
+      "helpedUnderstand",
+      "engagement",
+      "improveFirst"
+    ];
+
+    const missing = requiredFields.filter((k) => !form[k]);
+
     if (missing.length > 0) {
-      toast.error("Please answer all questions. All fields are required.");
+      toast.error("Please answer all required questions.");
       return;
     }
 
     if (!FEEDBACK_SCRIPT_URL) {
-      toast.error("Feedback form is not connected to the sheet. Set VITE_FEEDBACK_SCRIPT_URL.");
+      toast.error("Feedback form is not connected to the sheet.");
       return;
     }
 
     setSubmitting(true);
+
     try {
       const res = await fetch(FEEDBACK_SCRIPT_URL, {
         method: "POST",
@@ -66,18 +82,23 @@ const Feedback = () => {
       });
 
       if (!res.ok) throw new Error("Submit failed");
+
       const json = await res.json().catch(() => ({}));
-      if (json && json.success === false) throw new Error(json.error || "Submit failed");
+      if (json && json.success === false)
+        throw new Error(json.error || "Submit failed");
 
       toast.success("Thank you for your feedback!");
+
       setForm(initialState);
+
       try {
         localStorage.setItem("piggypath_feedback_submitted", "true");
       } catch (_) {}
+
       navigate("/");
     } catch (err) {
       console.error("Feedback submit failed", err);
-      toast.error("Failed to submit feedback. Please try again later.");
+      toast.error("Failed to submit feedback. Please try again.");
     } finally {
       setSubmitting(false);
     }
@@ -92,6 +113,7 @@ const Feedback = () => {
       <p className="font-semibold mb-3 text-foreground">
         {label} <span className="text-red-500">*</span>
       </p>
+
       <div className="grid gap-2 sm:grid-cols-2">
         {options.map((opt) => (
           <label
@@ -110,6 +132,7 @@ const Feedback = () => {
               onChange={() => handleChange(field, opt)}
               className="text-green-500"
             />
+
             <span className="text-sm text-foreground">{opt}</span>
           </label>
         ))}
@@ -127,6 +150,7 @@ const Feedback = () => {
             <h1 className="text-2xl sm:text-3xl font-bold mb-2 text-foreground text-center">
               PiggyPath Feedback
             </h1>
+
             <p className="text-muted-foreground text-center mb-6">
               Help us make PiggyPath more fun and clearer for you by answering a
               few quick questions.
@@ -141,54 +165,69 @@ const Feedback = () => {
               ])}
 
               {renderQuestion(
-                "2. What was your first reaction after opening the app?",
+                "2. First reaction after opening the app?",
                 "firstReaction",
-                [
-                  "Very interesting",
-                  "Good",
-                  "Neutral",
-                  "Confusing",
-                  "Not engaging"
-                ]
+                ["Very interesting", "Good", "Neutral", "Confusing", "Not engaging"]
               )}
 
               {renderQuestion(
-                "3. How easy was it to understand what to do?",
+                "3. Ease of understanding?",
                 "easeOfUse",
                 ["Very easy", "Easy", "Slightly confusing", "Difficult"]
               )}
 
               {renderQuestion(
-                "4. Which of the 3 games did you like the most?",
+                "4. Favorite game?",
                 "favoriteGame",
                 ["Breakeven", "Debt defier", "Quiz"]
               )}
 
               {renderQuestion(
-                "5. Which game was the most confusing or difficult?",
+                "5. Most confusing game?",
                 "hardestGame",
                 ["Breakeven", "Debt defier", "Quiz", "None"]
               )}
 
               {renderQuestion(
-                "6. Did the games actually help you understand any financial concept?",
+                "6. Did it help learning?",
                 "helpedUnderstand",
                 ["Yes, clearly", "A little", "Not really", "Not at all"]
               )}
 
               {renderQuestion(
-                "7. How engaging were the games overall?",
+                "7. Engagement level?",
                 "engagement",
                 ["Very engaging", "Fun", "Average", "Boring"]
               )}
 
-              {renderQuestion("8. What should we improve first?", "improveFirst", [
-                "Make games more fun",
-                "Make learning clearer",
-                "Improve design",
-                "Add rewards/progression",
-                "Reduce confusion"
-              ])}
+              {renderQuestion(
+                "8. Improve first?",
+                "improveFirst",
+                [
+                  "Make games more fun",
+                  "Make learning clearer",
+                  "Improve design",
+                  "Add rewards/progression",
+                  "Reduce confusion"
+                ]
+              )}
+
+              {/* Comment section */}
+              <div className="mb-6">
+                <p className="font-semibold mb-3 text-foreground">
+                  9. Additional comments (optional)
+                </p>
+
+                <textarea
+                  value={form.comments}
+                  onChange={(e) =>
+                    handleChange("comments", e.target.value)
+                  }
+                  placeholder="Tell us anything you'd like to add..."
+                  rows={4}
+                  className="w-full rounded-xl border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-400"
+                />
+              </div>
 
               <button
                 type="submit"
