@@ -17,7 +17,7 @@ const SolutionSection = () => {
               challenges and personalized learning that speaks to Gen Z. Think of 
               finance from an addictive app or fitness tracker paired in a practical, fun and 
               relatable way. No more guesswork, no scary learning and no pressure.
-             We envision a generation that doesn't just survive adulthood, but owns it. By turning the mystery of finance into the fun of a game, we’re building a future where every young adult has the clarity to dream big and the tools to actually get there—no jargon, no judgment, just progress.
+             We envision a generation that doesn't just survive adulthood, but owns it. By turning the mystery of finance into the fun of a game, we’re building a future where every young adult has the clarity to dream big and the tools to actually get there, no jargon, no judgment, just progress.
             </p>
             
           </div>
