@@ -7,7 +7,7 @@ const CTASection = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           
           <h2 className="text-4xl md:text-5xl font-bold text-primary-foreground text-center md:text-left">
-            Join us
+            Join With Us
           </h2>
           <Button
             onClick={() =>
