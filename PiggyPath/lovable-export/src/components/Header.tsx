@@ -1,17 +1,43 @@
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import piggyPathLogo from "@/assets/Logo.jpeg";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // 🔥 Smart section navigation
+  const goToSection = (id: string) => {
+    setMobileMenuOpen(false);
+
+    // If already on homepage → scroll directly
+    if (location.pathname === "/") {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+
+    // Otherwise go to homepage first
+    navigate("/");
+
+    // wait for DOM to render
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }, 150);
+  };
+
+  const navLinkClass =
+    "text-muted-foreground hover:text-foreground transition-colors text-left";
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container mx-4 px-4 py-4 flex items-center justify-between">
         
+        {/* Logo */}
         <img
           src={piggyPathLogo}
           alt="PiggyPath"
@@ -21,19 +47,21 @@ const Header = () => {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
-          <a href="#why" className="text-muted-foreground hover:text-foreground transition-colors">
+          <button onClick={() => goToSection("why")} className={navLinkClass}>
             Why PiggyPath
-          </a>
-          <a href="#team" className="text-muted-foreground hover:text-foreground transition-colors">
+          </button>
+
+          <button onClick={() => goToSection("team")} className={navLinkClass}>
             Team
-          </a>
-          <a href="#about" className="text-muted-foreground hover:text-foreground transition-colors">
+          </button>
+
+          <button onClick={() => goToSection("about")} className={navLinkClass}>
             About Us
-          </a>
+          </button>
+
           <button
-            type="button"
-            className="text-muted-foreground hover:text-foreground transition-colors"
             onClick={() => navigate("/feedback")}
+            className={navLinkClass}
           >
             Feedback
           </button>
@@ -63,22 +91,25 @@ const Header = () => {
       {mobileMenuOpen && (
         <div className="md:hidden bg-background border-b border-border py-4">
           <nav className="container mx-auto px-4 flex flex-col gap-4">
-            <a href="#why" className="text-muted-foreground hover:text-foreground transition-colors">
+
+            <button onClick={() => goToSection("why")} className={navLinkClass}>
               Why PiggyPath
-            </a>
-            <a href="#team" className="text-muted-foreground hover:text-foreground transition-colors">
+            </button>
+
+            <button onClick={() => goToSection("team")} className={navLinkClass}>
               Team
-            </a>
-            <a href="#about" className="text-muted-foreground hover:text-foreground transition-colors">
+            </button>
+
+            <button onClick={() => goToSection("about")} className={navLinkClass}>
               About Us
-            </a>
+            </button>
+
             <button
-              type="button"
-              className="text-left text-muted-foreground hover:text-foreground transition-colors"
               onClick={() => {
                 setMobileMenuOpen(false);
                 navigate("/feedback");
               }}
+              className={navLinkClass}
             >
               Feedback
             </button>
@@ -95,6 +126,7 @@ const Header = () => {
                 Log In
               </Button>
             </div>
+
           </nav>
         </div>
       )}

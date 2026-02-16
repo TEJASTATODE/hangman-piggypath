@@ -12,11 +12,11 @@ const SolutionSection = () => {
           <div className="bg-card rounded-3xl p-10 md:p-12 shadow-[0_18px_40px_rgba(0,255,127,0.35)] border border-border">
             
             <p className="text-muted-foreground leading-relaxed text-lg">
-              We believe young people don't lack intelligence — they lack engagement. 
-              PiggyPath reimagines finance education with hands-on actions, gamified 
-              challenges, and personalized learning that speaks to Gen Z. Think of 
-              finance from an addictive app or fitness tracker paired in a practical, fun, and 
-              relatable way. No more guesswork, no scary learning, and no pressure.
+              We believe young people don't lack intelligence, they lack engagement. 
+              PiggyPath reimagines finance education with hands on actions, gamified 
+              challenges and personalized learning that speaks to Gen Z. Think of 
+              finance from an addictive app or fitness tracker paired in a practical, fun and 
+              relatable way. No more guesswork, no scary learning and no pressure.
             </p>
             
           </div>

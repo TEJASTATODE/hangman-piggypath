@@ -66,15 +66,15 @@ const MeetFixy = () => {
               Meet Your Financial Guide
             </h2>
             <div className="space-y-4 text-muted-foreground">
-              <p>You’re Not Doing This Alone 👀 <br />
+              <p>You’re Not Doing This Alone. <br />
               Something’s watching your progress. <br />
               Not in a creepy way. In a got-your-back way.</p>
               <p>
-                As you explore Piggypath, there’s a quiet presence helping you make sense of money—nudging you, challenging you, and keeping things real when finance gets overwhelming.
+                As you explore Piggypath, there’s a quiet presence helping you make sense of money nudging you, challenging you and keeping things real when finance gets overwhelming.
               </p>
               <p>No face reveal. <br /> No name drop. <br /> Not yet.</p>
               <p>Just know this:
-                it’s built to learn how you think, move at your pace, and keep you on the right financial path.</p>
+                it’s built to learn how you think, move at your pace and keep you on the right financial path.</p>
               <p>Coming soon.</p>
             </div>
           </div>

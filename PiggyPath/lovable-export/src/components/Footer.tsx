@@ -11,7 +11,7 @@ const Footer = () => {
             <p className="text-background/70 text-sm leading-relaxed">
               PiggyPath is a gamified financial literacy
               app for Gen Z, designed to help young
-              adults learn budgeting, saving, and
+              adults learn budgeting, saving and
               investing through fun and interactive
               games.
             </p>
