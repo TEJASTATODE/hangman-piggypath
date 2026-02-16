@@ -36,7 +36,7 @@ const HeroSection = () => {
             className="text-lg text-muted-foreground max-w-xl mx-auto mb-8 animate-fade-in-up"
             style={{ animationDelay: "0.2s" }}
           >
-            Turn your financial goals into your newest high score. With PiggyPath, saving for that dream purchase or investing for the future isn't just smart—it’s actually fun. Level up your wallet, unlock real world rewards and build wealth without the boredom. Ready to play?
+            Turn your financial goals into your newest high score. With PiggyPath, saving for that dream purchase or investing for the future isn't just smart, it's actually fun. Level up your wallet, unlock real world rewards and build wealth without the boredom. Ready to play?
           </p>
           <div
             className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up"
@@ -117,7 +117,7 @@ const HeroSection = () => {
                     <div className="w-24 h-24 bg-secondary/20 rounded-2xl flex items-center justify-center mb-4">
                       <span className="text-6xl">❓</span>
                     </div>
-                    <h3 className="font-bold text-base mb-2 text-xl">Quiz Challenge</h3>
+                    <h3 className="font-bold text-base mb-2">Quiz Challenge</h3>
                     <p className="text-md text-muted-foreground text-center mb-4">
                       Test your knowledge
                     </p>

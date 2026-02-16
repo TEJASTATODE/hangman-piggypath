@@ -9,7 +9,7 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // 🔥 Smart section navigation
+  //  Smart section navigation
   const goToSection = (id: string) => {
     setMobileMenuOpen(false);
 
@@ -65,18 +65,6 @@ const Header = () => {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
-
-          <button onClick={() => goToSection("why")} className={navLinkClass}>
-            Why PiggyPath
-          </button>
-
-          <button onClick={() => goToSection("team")} className={navLinkClass}>
-            Team
-          </button>
-
-          <button onClick={() => goToSection("about")} className={navLinkClass}>
-            About Us
-          </button>
 
           <button
             type="button"

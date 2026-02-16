@@ -25,15 +25,13 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-12">
           <div>
             <img src={piggyPathLogo} alt="PiggyPath" className="h-16 mb-4 scale-150" />
-<<<<<<< HEAD
-            <p className="text-background/70 text-sm leading-relaxed">
+            {/* <p className="text-background/70 text-sm leading-relaxed">
               PiggyPath is a gamified financial literacy
               app for Gen Z, designed to help young
               adults learn budgeting, saving and
               investing through fun and interactive
               games.
-            </p>
-=======
+            </p> */}
             <div className="flex flex-col gap-2 text-sm mb-4">
               <button
                 onClick={() => handleSectionClick('why')}
@@ -56,7 +54,6 @@ const Footer = () => {
                 Team
               </button>
             </div>
->>>>>>> 01df8e02cb88685f37b5934a2a88874c4e0e7cbc
             <p className="text-background/50 text-xs mt-4">
               2025 © PiggyPath™ - v1.1
             </p>

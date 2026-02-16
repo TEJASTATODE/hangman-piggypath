@@ -65,9 +65,8 @@ const MeetFixy = () => {
               Meet Your Financial Guide
             </h2>
             <div className="space-y-4 text-muted-foreground">
-<<<<<<< HEAD
-              <p>You’re Not Doing This Alone. <br />
-              Something’s watching your progress. <br />
+              <p>You're Not Doing This Alone. <br />
+              Something's watching your progress. <br />
               Not in a creepy way. In a got-your-back way.</p>
               <p>
                 As you explore Piggypath, there’s a quiet presence helping you make sense of money nudging you, challenging you and keeping things real when finance gets overwhelming.
@@ -75,16 +74,14 @@ const MeetFixy = () => {
               <p>No face reveal. <br /> No name drop. <br /> Not yet.</p>
               <p>Just know this:
                 it’s built to learn how you think, move at your pace and keep you on the right financial path.</p>
-=======
-              <p>Even the best players need a sidekick. As you explore PiggyPath, you might sense you aren't playing alone. That’s because we’re building the ultimate guide to watch your back.<br />
+              <p>Even the best players need a sidekick. As you explore PiggyPath, you might sense you aren't playing alone. That’s because we're building the ultimate guide to watch your back.<br />
              Think of it as a financial guru with zero judgment and infinite patience. It’s here to nudge you toward the wins and keep it real when the spending gets wild. <br />
              </p>
               <p>
-                Who is it? We’re keeping the identity under wraps for now. But get ready—your adventure is about to get a lot more personal.
+                Who is it? We're keeping the identity under wraps for now. But get ready—your adventure is about to get a lot more personal.
               </p>
               <p>Just know this
-                it’s built to learn how you think, move at your pace, and keep you on the right financial path.</p>
->>>>>>> 01df8e02cb88685f37b5934a2a88874c4e0e7cbc
+                it's built to learn how you think, move at your pace, and keep you on the right financial path.</p>
               <p>Coming soon.</p>
             </div>
           </div>
