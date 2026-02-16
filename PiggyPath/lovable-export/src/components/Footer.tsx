@@ -1,7 +1,6 @@
 import { Twitter, Instagram, Linkedin, Mail } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import piggyPathLogo from "@/assets/Frame8.png";
-import { Button } from "@/components/ui/button";
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -92,57 +91,57 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* RIGHT SECTION — BUTTON SOCIALS */}
+          {/*SOCIAL LINKS */}
           <div>
-            <h4 className="font-semibold mb-4">GET SOCIAL :</h4>
+            <h4 className="font-semibold mb-4 md:pl-20">GET SOCIAL :</h4>
 
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 text-background/70 md:pl-20">
 
-              <Button
+              <button
                 onClick={() =>
                   window.open("mailto:piggypath.org@gmail.com", "_blank")
                 }
-                className="justify-start gap-2"
+                className="flex items-center gap-2 hover:text-background transition-colors"
               >
                 <Mail size={18} />
                 Email Us
-              </Button>
+              </button>
 
-              <Button
+              <button
                 onClick={() =>
                   window.open("https://x.com/Piggypath_Edu", "_blank")
                 }
-                className="justify-start gap-2"
+                className="flex items-center gap-2 hover:text-background transition-colors"
               >
                 <Twitter size={18} />
                 Twitter / X
-              </Button>
+              </button>
 
-              <Button
+              <button
                 onClick={() =>
                   window.open(
                     "https://www.linkedin.com/company/piggypath",
                     "_blank"
                   )
                 }
-                className="justify-start gap-2"
+                className="flex items-center gap-2 hover:text-background transition-colors"
               >
                 <Linkedin size={18} />
                 LinkedIn
-              </Button>
+              </button>
 
-              <Button
+              <button
                 onClick={() =>
                   window.open(
                     "https://www.instagram.com/piggy_path",
                     "_blank"
                   )
                 }
-                className="justify-start gap-2"
+                className="flex items-center gap-2 hover:text-background transition-colors"
               >
                 <Instagram size={18} />
                 Instagram
-              </Button>
+              </button>
 
             </div>
           </div>
