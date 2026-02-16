@@ -16,7 +16,7 @@ const ProblemSection = () => {
                 workshops are boring and social media tips are often misleading.
                 Financial apps exist today but none truly speak the language of
                 our generation or make it genuinely fun to build financial wellness.
-                We’re here to ensure no one in our generation gets left behind by an outdated financial system. Our mission is to be your partner in leveling up your life—turning the mystery of money into a clear & playable path toward the future you deserve.
+                We're here to ensure no one in our generation gets left behind by an outdated financial system. Our mission is to be your partner in leveling up your life—turning the mystery of money into a clear & playable path toward the future you deserve.
               </p>
             </div>
 
