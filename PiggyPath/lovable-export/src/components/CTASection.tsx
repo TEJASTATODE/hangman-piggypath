@@ -11,10 +11,10 @@ const CTASection = () => {
           </h2>
           <Button
             onClick={() =>
-              window.open("https://piggypath.org.in", "_blank")
+              window.open("mailto:piggypath.org@gmail.com", "_blank")
             }
           >
-            piggypath.org.in
+            piggypath.org@gmail.com
           </Button>
 
         </div>
