@@ -11,23 +11,33 @@ type FeedbackState = {
   ageGroup: string;
   firstReaction: string;
   easeOfUse: string;
-  favoriteGame: string;
-  hardestGame: string;
+
+  // ✅ multi-select fields
+  favoriteGame: string[];
+  hardestGame: string[];
+
   helpedUnderstand: string;
   engagement: string;
-  improveFirst: string;
-  comments: string; // NEW optional field
+
+  // ✅ multi-select field
+  improveFirst: string[];
+
+  comments: string;
 };
 
 const initialState: FeedbackState = {
   ageGroup: "",
   firstReaction: "",
   easeOfUse: "",
-  favoriteGame: "",
-  hardestGame: "",
+
+  favoriteGame: [],
+  hardestGame: [],
+
   helpedUnderstand: "",
   engagement: "",
-  improveFirst: "",
+
+  improveFirst: [],
+
   comments: ""
 };
 
@@ -40,10 +50,25 @@ const Feedback = () => {
     setForm((prev) => ({ ...prev, [field]: value }));
   };
 
+  // ✅ toggle for multi-select questions
+  const toggleMulti = (
+    field: "favoriteGame" | "hardestGame" | "improveFirst",
+    value: string
+  ) => {
+    setForm((prev) => {
+      const arr = prev[field];
+      return {
+        ...prev,
+        [field]: arr.includes(value)
+          ? arr.filter((v) => v !== value)
+          : [...arr, value]
+      };
+    });
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Only required fields validated
     const requiredFields: (keyof FeedbackState)[] = [
       "ageGroup",
       "firstReaction",
@@ -55,7 +80,11 @@ const Feedback = () => {
       "improveFirst"
     ];
 
-    const missing = requiredFields.filter((k) => !form[k]);
+    // ✅ validation supports arrays
+    const missing = requiredFields.filter((k) => {
+      const val = form[k];
+      return Array.isArray(val) ? val.length === 0 : !val;
+    });
 
     if (missing.length > 0) {
       toast.error("Please answer all required questions.");
@@ -108,37 +137,52 @@ const Feedback = () => {
     label: string,
     field: keyof FeedbackState,
     options: string[]
-  ) => (
-    <div className="mb-6">
-      <p className="font-semibold mb-3 text-foreground">
-        {label} <span className="text-red-500">*</span>
-      </p>
+  ) => {
+    const isMulti =
+      field === "favoriteGame" ||
+      field === "hardestGame" ||
+      field === "improveFirst";
 
-      <div className="grid gap-2 sm:grid-cols-2">
-        {options.map((opt) => (
-          <label
-            key={opt}
-            className={`flex items-center gap-2 rounded-xl border px-3 py-2 cursor-pointer transition-colors ${
-              form[field] === opt
-                ? "border-green-500 bg-green-50"
-                : "border-border hover:border-green-300"
-            }`}
-          >
-            <input
-              type="radio"
-              name={field}
-              value={opt}
-              checked={form[field] === opt}
-              onChange={() => handleChange(field, opt)}
-              className="text-green-500"
-            />
+    return (
+      <div className="mb-6">
+        <p className="font-semibold mb-3 text-foreground">
+          {label} <span className="text-red-500">*</span>
+        </p>
 
-            <span className="text-sm text-foreground">{opt}</span>
-          </label>
-        ))}
+        <div className="grid gap-2 sm:grid-cols-2">
+          {options.map((opt) => {
+            const selected = isMulti
+              ? (form[field] as string[]).includes(opt)
+              : form[field] === opt;
+
+            return (
+              <label
+                key={opt}
+                className={`flex items-center gap-2 rounded-xl border px-3 py-2 cursor-pointer transition-colors ${
+                  selected
+                    ? "border-green-500 bg-green-50"
+                    : "border-border hover:border-green-300"
+                }`}
+              >
+                <input
+                  type={isMulti ? "checkbox" : "radio"}
+                  checked={selected}
+                  onChange={() =>
+                    isMulti
+                      ? toggleMulti(field as any, opt)
+                      : handleChange(field, opt)
+                  }
+                  className="text-green-500"
+                />
+
+                <span className="text-sm text-foreground">{opt}</span>
+              </label>
+            );
+          })}
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-purple-50">
