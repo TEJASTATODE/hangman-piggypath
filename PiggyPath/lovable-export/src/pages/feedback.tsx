@@ -4,24 +4,17 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { toast } from "@/components/ui/sonner";
 
-// Set in .env as VITE_FEEDBACK_SCRIPT_URL (Apps Script Web App URL).
-const FEEDBACK_SCRIPT_URL = import.meta.env.VITE_FEEDBACK_SCRIPT_URL ?? "";
+const FEEDBACK_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxwYPp-aq6lJzY0GASRL5lutWPt4XqPTMRHFFSnHEBwpmT07HBMUXZFMPxCTaWIsy-3/exec";
 
 type FeedbackState = {
   ageGroup: string;
   firstReaction: string;
   easeOfUse: string;
-
-  // ✅ multi-select fields
   favoriteGame: string[];
   hardestGame: string[];
-
   helpedUnderstand: string;
   engagement: string;
-
-  // ✅ multi-select field
   improveFirst: string[];
-
   comments: string;
 };
 
@@ -29,15 +22,11 @@ const initialState: FeedbackState = {
   ageGroup: "",
   firstReaction: "",
   easeOfUse: "",
-
   favoriteGame: [],
   hardestGame: [],
-
   helpedUnderstand: "",
   engagement: "",
-
   improveFirst: [],
-
   comments: ""
 };
 
@@ -50,7 +39,6 @@ const Feedback = () => {
     setForm((prev) => ({ ...prev, [field]: value }));
   };
 
-  // ✅ toggle for multi-select questions
   const toggleMulti = (
     field: "favoriteGame" | "hardestGame" | "improveFirst",
     value: string
@@ -80,7 +68,6 @@ const Feedback = () => {
       "improveFirst"
     ];
 
-    // ✅ validation supports arrays
     const missing = requiredFields.filter((k) => {
       const val = form[k];
       return Array.isArray(val) ? val.length === 0 : !val;
@@ -91,33 +78,23 @@ const Feedback = () => {
       return;
     }
 
-    if (!FEEDBACK_SCRIPT_URL) {
-      toast.error("Feedback form is not connected to the sheet.");
-      return;
-    }
-
     setSubmitting(true);
 
     try {
-      const res = await fetch(FEEDBACK_SCRIPT_URL, {
+      await fetch(FEEDBACK_SCRIPT_URL, {
         method: "POST",
+        mode: "no-cors",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
           ...form,
+          action: "feedback",
           timestamp: new Date().toISOString()
         })
       });
 
-      if (!res.ok) throw new Error("Submit failed");
-
-      const json = await res.json().catch(() => ({}));
-      if (json && json.success === false)
-        throw new Error(json.error || "Submit failed");
-
       toast.success("Thank you for your feedback!");
-
       setForm(initialState);
 
       try {
@@ -174,7 +151,6 @@ const Feedback = () => {
                   }
                   className="text-green-500"
                 />
-
                 <span className="text-sm text-foreground">{opt}</span>
               </label>
             );
@@ -256,7 +232,6 @@ const Feedback = () => {
                 ]
               )}
 
-              {/* Comment section */}
               <div className="mb-6">
                 <p className="font-semibold mb-3 text-foreground">
                   9. Additional comments (optional)
@@ -264,9 +239,7 @@ const Feedback = () => {
 
                 <textarea
                   value={form.comments}
-                  onChange={(e) =>
-                    handleChange("comments", e.target.value)
-                  }
+                  onChange={(e) => handleChange("comments", e.target.value)}
                   placeholder="Tell us anything you'd like to add..."
                   rows={4}
                   className="w-full rounded-xl border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-400"
