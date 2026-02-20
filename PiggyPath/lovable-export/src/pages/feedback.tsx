@@ -101,7 +101,7 @@ const Feedback = () => {
         localStorage.setItem("piggypath_feedback_submitted", "true");
       } catch (_) {}
 
-      navigate("/");
+      navigate("/index");
     } catch (err) {
       console.error("Feedback submit failed", err);
       toast.error("Failed to submit feedback. Please try again.");
