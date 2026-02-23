@@ -65,7 +65,7 @@ export default function App() {
         setShowH1(false);
         setShowH2(false);
         setShowH3(false);
-      }, 2500);
+      }, 4000);
     }
     if (isLoser) {
       loseSound.play();
